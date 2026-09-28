@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@/components/Button";
 import { ArrowRightIcon, BuildingIcon, HomeIcon, PhoneIcon, ShieldIcon, TicketIcon } from "@/components/Icons";
@@ -19,16 +18,8 @@ export function Hero() {
       {/* Background composition */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_70%_40%,black_10%,transparent_70%)]" />
-        <div className="absolute -top-40 right-[-10%] h-[42rem] w-[42rem] rounded-full bg-gold/15 blur-[140px]" />
+        <div className="absolute top-10 right-[-10%] h-[42rem] w-[42rem] rounded-full bg-gold/15 blur-[140px]" />
         <div className="absolute bottom-[-20%] left-[-10%] h-[30rem] w-[30rem] rounded-full bg-gold/5 blur-[120px]" />
-        <Image
-          src="/logo.svg"
-          alt=""
-          width={600}
-          height={700}
-          priority
-          className="absolute top-1/2 right-[-8rem] h-[46rem] w-auto -translate-y-1/2 opacity-[0.05] sm:right-[-4rem] lg:right-[2%]"
-        />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" />
       </div>
 
@@ -74,7 +65,7 @@ export function Hero() {
 
         {/* Coverage panel */}
         <div className="animate-fade-up [animation-delay:500ms] lg:col-span-5">
-          <div className="relative border border-gold/25 bg-gradient-to-b from-graphite/90 to-coal/90 p-8 shadow-[0_40px_120px_-40px_rgb(201_164_76/0.35)] backdrop-blur-sm sm:p-10">
+          <div className="relative border border-gold/25 bg-gradient-to-b from-graphite/90 to-coal/90 p-8 shadow-[0_40px_120px_-40px_rgb(222_173_47/0.35)] backdrop-blur-sm sm:p-10">
             <span aria-hidden="true" className="absolute -top-px -left-px h-8 w-8 border-t-2 border-l-2 border-gold" />
             <span aria-hidden="true" className="absolute -right-px -bottom-px h-8 w-8 border-r-2 border-b-2 border-gold" />
 

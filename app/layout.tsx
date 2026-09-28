@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { logoSrc } from "@/components/Logo";
 import { services, site } from "@/lib/site";
 import "./globals.css";
 
@@ -38,18 +39,20 @@ export const metadata: Metadata = {
     url: "/",
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
+    images: [{ url: logoSrc, width: 1254, height: 1254, alt: `${site.name} logo` }],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
+    images: [logoSrc],
   },
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#070707",
+  themeColor: "#030303",
   colorScheme: "dark",
 };
 
@@ -59,7 +62,8 @@ const jsonLd = {
   "@id": `${site.url}/#organization`,
   name: site.legalName,
   url: site.url,
-  logo: `${site.url}/logo.svg`,
+  logo: `${site.url}${logoSrc}`,
+  image: `${site.url}${logoSrc}`,
   email: site.email,
   telephone: `+1-${site.phone}`,
   faxNumber: `+1-${site.fax}`,

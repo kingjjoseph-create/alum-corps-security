@@ -83,16 +83,16 @@ export function Header() {
         className={`border-b transition-all duration-500 ${
           scrolled || mobileOpen
             ? "border-gold/20 bg-ink/95 shadow-[0_10px_40px_-20px_rgb(0_0_0/0.9)] backdrop-blur-md"
-            : "border-transparent bg-gradient-to-b from-ink/80 to-transparent"
+            : "border-white/5 bg-ink"
         }`}
       >
         <nav
           aria-label="Primary"
           className={`mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-6 lg:px-8 ${
-            scrolled ? "h-18" : "h-22"
+            scrolled ? "h-20" : "h-22 lg:h-24"
           }`}
         >
-          <Logo />
+          <Logo priority className={`transition-all duration-500 ${scrolled ? "h-16" : "h-[4.5rem] lg:h-20"}`} />
 
           <ul className="hidden items-center gap-1 lg:flex">
             {navigation.map((item) =>
@@ -184,7 +184,7 @@ export function Header() {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`fixed inset-x-0 bottom-0 ${scrolled ? "top-18" : "top-22"} overflow-y-auto bg-ink/98 backdrop-blur-md transition-all duration-500 lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 ${scrolled ? "top-20" : "top-22"} overflow-y-auto bg-ink/98 backdrop-blur-md transition-all duration-500 lg:hidden ${
           mobileOpen ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >

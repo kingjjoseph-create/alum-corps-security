@@ -40,7 +40,7 @@ export function ServicesSection() {
               <Reveal as="li" key={s.slug} delay={i * 120}>
                 <Link
                   href={s.href}
-                  className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-gradient-to-b from-graphite to-coal p-8 transition-all duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_80px_-30px_rgb(201_164_76/0.35)] sm:p-10"
+                  className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-gradient-to-b from-graphite to-coal p-8 transition-all duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_80px_-30px_rgb(222_173_47/0.35)] sm:p-10"
                 >
                   <span
                     aria-hidden="true"

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #070707;
+  --color-ink: #030303;
   --color-coal: #0e0e0e;
   --color-graphite: #161616;
   --color-steel: #262626;
   --color-mist: #a3a3a3;
-  --color-gold: #c9a44c;
-  --color-gold-light: #e8cf8a;
-  --color-gold-dark: #9a7a2e;
+  --color-gold: #dead2f;
+  --color-gold-light: #f2cc66;
+  --color-gold-dark: #a87f1a;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
@@ -59,7 +59,7 @@
 @layer components {
   /* Metallic gold text treatment used on key words in headings. */
   .text-gold-gradient {
-    background: linear-gradient(100deg, #9a7a2e 0%, #e8cf8a 30%, #c9a44c 55%, #f3e2b0 75%, #9a7a2e 100%);
+    background: linear-gradient(100deg, #b8891c 0%, #f2cc66 30%, #dead2f 55%, #f7dc8e 75%, #b8891c 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -78,8 +78,8 @@
   /* Faint architectural grid used behind hero and feature sections. */
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgb(201 164 76 / 0.07) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(201 164 76 / 0.07) 1px, transparent 1px);
+      linear-gradient(to right, rgb(222 173 47 / 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(222 173 47 / 0.07) 1px, transparent 1px);
     background-size: 64px 64px;
   }
 

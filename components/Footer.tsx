@@ -20,7 +20,7 @@ export function Footer() {
 
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 sm:grid-cols-2 lg:grid-cols-12 lg:px-8 lg:py-20">
         <div className="sm:col-span-2 lg:col-span-4">
-          <Logo />
+          <Logo className="h-28" />
           <p className="mt-6 max-w-sm leading-relaxed text-mist">
             Disciplined, professional protection for Florida businesses, residences, and events.
           </p>
