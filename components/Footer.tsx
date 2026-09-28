@@ -45,7 +45,7 @@ export function Footer() {
               href={site.licenseVerifyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-block text-sm text-gold underline decoration-gold/40 underline-offset-4 hover:text-gold-light"
+              className="mt-1 inline-flex min-h-11 lg:min-h-0 items-center text-sm text-gold underline decoration-gold/40 underline-offset-4 hover:text-gold-light lg:mt-3"
             >
               Verify with the Division of Licensing<span className="sr-only"> (opens in a new tab)</span>
             </a>
@@ -54,15 +54,15 @@ export function Footer() {
 
         <nav aria-label="Services" className="lg:col-span-2">
           <h3 className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Services</h3>
-          <ul className="mt-5 space-y-3 text-sm">
+          <ul className="mt-3 text-sm lg:mt-5 lg:space-y-3">
             <li>
-              <Link href="/services" className="text-mist transition-colors hover:text-white">
+              <Link href="/services" className="inline-flex min-h-11 lg:min-h-0 items-center text-mist transition-colors hover:text-white">
                 All Services
               </Link>
             </li>
             {services.map((s) => (
               <li key={s.href}>
-                <Link href={s.href} className="text-mist transition-colors hover:text-white">
+                <Link href={s.href} className="inline-flex min-h-11 lg:min-h-0 items-center text-mist transition-colors hover:text-white">
                   {s.title}
                 </Link>
               </li>
@@ -72,10 +72,10 @@ export function Footer() {
 
         <nav aria-label="Company" className="lg:col-span-2">
           <h3 className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Company</h3>
-          <ul className="mt-5 space-y-3 text-sm">
+          <ul className="mt-3 text-sm lg:mt-5 lg:space-y-3">
             {companyLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="text-mist transition-colors hover:text-white">
+                <Link href={l.href} className="inline-flex min-h-11 lg:min-h-0 items-center text-mist transition-colors hover:text-white">
                   {l.label}
                 </Link>
               </li>
@@ -85,15 +85,15 @@ export function Footer() {
 
         <div className="sm:col-span-2 lg:col-span-4">
           <h3 className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Contact</h3>
-          <address className="mt-5 space-y-4 text-sm not-italic">
-            <a href={site.phoneHref} className="flex items-center gap-3 text-white transition-colors hover:text-gold">
+          <address className="mt-3 space-y-1 text-sm not-italic lg:mt-5 lg:space-y-4">
+            <a href={site.phoneHref} className="flex min-h-11 lg:min-h-0 items-center gap-3 text-white transition-colors hover:text-gold">
               <PhoneIcon className="h-5 w-5 shrink-0 text-gold" />
               <span>
                 <span className="sr-only">Phone: </span>
                 {site.phone}
               </span>
             </a>
-            <a href={`mailto:${site.email}`} className="flex items-center gap-3 text-white transition-colors hover:text-gold">
+            <a href={`mailto:${site.email}`} className="flex min-h-11 lg:min-h-0 items-center gap-3 text-white transition-colors hover:text-gold">
               <MailIcon className="h-5 w-5 shrink-0 text-gold" />
               <span>
                 <span className="sr-only">Email: </span>
@@ -135,7 +135,7 @@ export function Footer() {
             <ul className="flex flex-wrap gap-x-6 gap-y-2">
               {legalLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="transition-colors hover:text-gold">
+                  <Link href={l.href} className="inline-flex min-h-11 lg:min-h-0 items-center transition-colors hover:text-gold">
                     {l.label}
                   </Link>
                 </li>

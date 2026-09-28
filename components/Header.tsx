@@ -228,10 +228,10 @@ export function Header() {
             </ButtonLink>
           </li>
           <li className="pt-6 text-sm text-mist">
-            <a href={site.phoneHref} className="flex items-center gap-3 py-2 hover:text-gold">
+            <a href={site.phoneHref} className="flex min-h-11 items-center gap-3 hover:text-gold">
               <PhoneIcon className="h-4 w-4 text-gold" /> {site.phone}
             </a>
-            <a href={`mailto:${site.email}`} className="flex items-center gap-3 py-2 hover:text-gold">
+            <a href={`mailto:${site.email}`} className="flex min-h-11 items-center gap-3 hover:text-gold">
               <MailIcon className="h-4 w-4 text-gold" /> {site.email}
             </a>
             <p className="mt-4 flex items-center gap-3 border-t border-white/10 pt-5 text-xs tracking-[0.18em] uppercase">

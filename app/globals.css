@@ -43,8 +43,25 @@
     color-scheme: dark;
   }
 
+  /* Scale the whole rem-based layout up on large displays so it doesn't look
+     small and sparse. Breakpoints use the browser default, so they're unaffected. */
+  @media (min-width: 1920px) {
+    html {
+      font-size: 112.5%;
+    }
+  }
+  @media (min-width: 2400px) {
+    html {
+      font-size: 125%;
+    }
+  }
+
   body {
     @apply bg-ink text-white font-sans antialiased;
+  }
+
+  .font-display {
+    font-variant-numeric: lining-nums;
   }
 
   ::selection {

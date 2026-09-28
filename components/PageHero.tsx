@@ -50,7 +50,7 @@ export function PageHero({
                     </span>
                   )}
                   {c.href ? (
-                    <Link href={c.href} className="transition-colors hover:text-gold">
+                    <Link href={c.href} className="-my-3.5 inline-block py-3.5 transition-colors hover:text-gold">
                       {c.label}
                     </Link>
                   ) : (
@@ -74,7 +74,7 @@ export function PageHero({
             {intro}
           </div>
           {showCtas && (
-            <div className="mt-10 flex animate-fade-up flex-col gap-4 [animation-delay:400ms] sm:flex-row">
+            <div className="mt-10 flex animate-fade-up flex-col gap-4 [animation-delay:400ms] sm:flex-row sm:flex-wrap">
               <ButtonLink href={primaryCta.href} arrow>
                 {primaryCta.label}
               </ButtonLink>

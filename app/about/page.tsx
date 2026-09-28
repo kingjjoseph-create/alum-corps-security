@@ -102,7 +102,7 @@ export default function AboutPage() {
             {values.map((v, i) => (
               <Reveal as="li" key={v.title} delay={i * 100} className="bg-coal p-8 sm:p-10">
                 <span className="font-display text-4xl font-semibold text-gold-gradient">0{i + 1}</span>
-                <h3 className="mt-5 font-display text-3xl font-semibold text-white">{v.title}</h3>
+                <h3 className="mt-5 font-display text-3xl font-semibold text-white lg:text-[1.65rem] xl:text-3xl">{v.title}</h3>
                 <p className="mt-3 leading-relaxed text-mist">{v.body}</p>
               </Reveal>
             ))}
@@ -154,7 +154,7 @@ export default function AboutPage() {
           <h2 id="about-cta-heading" className="font-display text-4xl font-semibold text-balance sm:text-5xl">
             Put a disciplined team <span className="text-gold-gradient italic">on your post.</span>
           </h2>
-          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
             <ButtonLink href={site.quoteHref} arrow>
               Request Security Coverage
             </ButtonLink>

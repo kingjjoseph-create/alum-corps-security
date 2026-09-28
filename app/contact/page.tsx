@@ -50,7 +50,7 @@ export default function ContactPage() {
 
       {/* Direct channels */}
       <section aria-label="Contact methods" className="border-b border-gold/15 bg-coal">
-        <ul className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/10 md:grid-cols-3 md:divide-x md:divide-y-0">
+        <ul className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/10 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
           {channels.map(({ icon: Icon, label, value, href, note }) => {
             const inner = (
               <>

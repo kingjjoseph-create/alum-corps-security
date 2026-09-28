@@ -5,7 +5,7 @@ import { ArrowRightIcon } from "./Icons";
 type Variant = "primary" | "outline" | "ghost";
 
 const base =
-  "group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] sm:px-7 sm:tracking-[0.18em] transition-all duration-300 focus-visible:outline-gold";
+  "group inline-flex min-h-12 items-center justify-center gap-2.5 px-5 py-3.5 text-center text-[0.8125rem] font-semibold uppercase tracking-[0.1em] sm:whitespace-nowrap sm:px-7 sm:text-sm sm:tracking-[0.16em] transition-all duration-300 focus-visible:outline-gold";
 
 const variants: Record<Variant, string> = {
   primary:

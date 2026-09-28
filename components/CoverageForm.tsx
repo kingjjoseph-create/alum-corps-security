@@ -178,7 +178,7 @@ export function CoverageForm() {
             <input
               id="hours"
               name="hours"
-              placeholder="e.g. Mon–Fri, 6 PM – 6 AM  or  Saturday, 4 PM – 11 PM"
+              placeholder="e.g. Mon–Fri, 6 PM – 6 AM"
               defaultValue={v.hours}
               className={inputClass}
             />

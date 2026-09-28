@@ -20,10 +20,10 @@ export function Hero() {
           className="beam right-[18%] hidden [animation-delay:-7s] sm:block"
           style={{ "--beam-from": "-12deg", "--beam-to": "-30deg" } as CSSProperties}
         />
-        <div className="absolute inset-x-[-50%] top-[80%] h-[60%]">
+        <div className="absolute inset-x-[-50%] top-[86%] h-[60%]">
           <div className="horizon-grid absolute inset-0 opacity-60" />
         </div>
-        <div className="absolute inset-x-0 top-[80%] h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent shadow-[0_0_40px_6px_rgb(222_173_47/0.35)]" />
+        <div className="absolute inset-x-0 top-[86%] h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent shadow-[0_0_40px_6px_rgb(222_173_47/0.35)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,var(--color-ink)_95%)]" />
         <div className="grain absolute inset-0" />
       </div>
@@ -44,16 +44,16 @@ export function Hero() {
           <span className="text-gold-gradient animate-shimmer italic">Disciplined Service.</span>
         </h1>
 
-        <p className="mt-8 flex animate-fade-up flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-[0.66rem] font-medium tracking-[0.12em] text-white/80 uppercase [animation-delay:300ms] sm:gap-x-5 sm:text-base sm:tracking-[0.3em]">
+        <p className="mt-8 flex animate-fade-up flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs font-medium tracking-[0.04em] text-white/80 uppercase [animation-delay:300ms] sm:gap-x-5 sm:text-base sm:tracking-[0.3em]">
           {disciplines.map((d, i) => (
-            <span key={d} className="inline-flex items-center gap-2.5 sm:gap-5">
+            <span key={d} className="inline-flex items-center gap-2 sm:gap-5">
               {i > 0 && <span aria-hidden="true" className="h-4 w-px bg-gold/70" />}
               {d}
             </span>
           ))}
         </p>
 
-        <div className="mt-12 flex w-full animate-fade-up flex-col justify-center gap-4 [animation-delay:450ms] sm:w-auto sm:flex-row">
+        <div className="mt-12 flex w-full animate-fade-up flex-col justify-center gap-4 [animation-delay:450ms] sm:w-auto sm:flex-row sm:flex-wrap">
           <ButtonLink href="#request-quote" arrow>
             Request Security Coverage
           </ButtonLink>
@@ -66,26 +66,26 @@ export function Hero() {
       {/* Credential bar */}
       <div className="relative animate-fade-up border-t border-gold/20 bg-ink/70 backdrop-blur-sm [animation-delay:600ms]">
         <dl className="mx-auto grid max-w-7xl divide-y divide-white/10 px-6 text-sm sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-8">
-          <div className="py-5 sm:py-6">
+          <div className="py-3 sm:py-6">
             <dt className="sr-only">License</dt>
             <dd className="flex items-center justify-center gap-3 tracking-[0.18em] text-white/80 uppercase">
               <ShieldIcon className="h-5 w-5 text-gold" />
               {site.licenseLabel}
             </dd>
           </div>
-          <div className="py-5 sm:py-6">
+          <div className="py-3 sm:py-6">
             <dt className="sr-only">Phone</dt>
             <dd>
-              <a href={site.phoneHref} className="flex items-center justify-center gap-3 tracking-[0.12em] text-white/80 transition-colors hover:text-gold">
+              <a href={site.phoneHref} className="flex min-h-11 lg:min-h-0 items-center justify-center gap-3 tracking-[0.12em] text-white/80 transition-colors hover:text-gold">
                 <PhoneIcon className="h-5 w-5 text-gold" />
                 {site.phone}
               </a>
             </dd>
           </div>
-          <div className="py-5 sm:py-6">
+          <div className="py-3 sm:py-6">
             <dt className="sr-only">Email</dt>
             <dd>
-              <a href={`mailto:${site.email}`} className="flex items-center justify-center gap-3 text-white/80 transition-colors hover:text-gold">
+              <a href={`mailto:${site.email}`} className="flex min-h-11 lg:min-h-0 items-center justify-center gap-3 text-white/80 transition-colors hover:text-gold">
                 <MailIcon className="h-5 w-5 text-gold" />
                 {site.email}
               </a>

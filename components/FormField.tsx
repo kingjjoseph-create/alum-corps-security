@@ -2,13 +2,12 @@ import type { ReactNode } from "react";
 
 export const inputClass =
   "mt-2 block w-full border border-white/15 bg-ink/80 px-4 py-3.5 text-white placeholder:text-white/45 transition-colors focus:border-gold focus:outline-none aria-[invalid=true]:border-red-400";
-export const labelClass = "text-xs font-semibold tracking-[0.2em] text-white/80 uppercase";
+export const labelClass = "text-xs font-semibold tracking-[0.14em] text-white/80 uppercase sm:tracking-[0.2em]";
 
 export function RequiredMark() {
   return (
     <span className="text-gold" aria-hidden="true">
-      {" "}
-      *
+      {"\u00a0*"}
     </span>
   );
 }
@@ -60,7 +59,7 @@ export function FormSection({ number, title, children }: { number: string; title
     <fieldset className="border-t border-white/10 pt-10 first:border-t-0 first:pt-0">
       <legend className="float-left mb-8 flex w-full items-center gap-4">
         <span className="font-display text-3xl font-semibold text-gold-gradient">{number}</span>
-        <span className="text-sm font-semibold tracking-[0.25em] text-white uppercase">{title}</span>
+        <span className="text-sm font-semibold tracking-[0.14em] text-white uppercase sm:tracking-[0.25em]">{title}</span>
       </legend>
       <div className="clear-both grid gap-6 sm:grid-cols-2">{children}</div>
     </fieldset>

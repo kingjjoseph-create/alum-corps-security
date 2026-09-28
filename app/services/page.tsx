@@ -65,7 +65,7 @@ export default function ServicesPage() {
               </>
             }
           />
-          <ul className="mt-16 grid gap-6 md:grid-cols-3">
+          <ul className="mt-16 grid gap-6 lg:grid-cols-3">
             {services.map((s, i) => {
               const Icon = coreIcons[s.slug];
               return (

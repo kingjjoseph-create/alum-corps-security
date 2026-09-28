@@ -164,7 +164,7 @@ export default function ResidentialSecurityPage() {
           <ul className="mt-20 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-white/10">
             {residentialValues.map((v, i) => (
               <Reveal as="li" key={v.word} delay={i * 120} className="text-center lg:px-8">
-                <p className="font-display text-4xl font-semibold text-gold-gradient italic sm:text-5xl">{v.word}</p>
+                <p className="font-display text-4xl font-semibold text-gold-gradient italic sm:text-5xl lg:text-[2rem] xl:text-5xl">{v.word}</p>
                 <span aria-hidden="true" className="mx-auto mt-6 block h-px w-10 bg-gold/60" />
                 <p className="mt-6 leading-relaxed text-mist">{v.body}</p>
               </Reveal>
@@ -222,7 +222,7 @@ export default function ResidentialSecurityPage() {
             />
             <Reveal delay={150}>
               <ButtonLink href="#request-quote" arrow className="mt-10">
-                Schedule a Community Assessment
+                Schedule an Assessment
               </ButtonLink>
             </Reveal>
           </div>

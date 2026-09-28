@@ -16,7 +16,7 @@ export function LicenseCard({ className = "" }: { className?: string }) {
         href={site.licenseVerifyUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-5 inline-block text-sm text-gold underline decoration-gold/40 underline-offset-4 hover:text-gold-light"
+        className="mt-3 inline-flex min-h-11 lg:min-h-0 items-center text-sm text-gold underline decoration-gold/40 underline-offset-4 hover:text-gold-light lg:mt-5"
       >
         Verify with the Division of Licensing<span className="sr-only"> (opens in a new tab)</span>
       </a>

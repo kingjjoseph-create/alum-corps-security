@@ -30,7 +30,7 @@ export function Leadership() {
           </Reveal>
         </div>
 
-        <ul className="mt-16 grid gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
+        <ul className="mt-16 grid gap-6 lg:grid-cols-3 lg:gap-8">
           {leadership.map((person, i) => (
             <Reveal as="li" key={person.name} delay={i * 120}>
               {/* Executive card. When headshots are available, swap the monogram for an <Image>. */}

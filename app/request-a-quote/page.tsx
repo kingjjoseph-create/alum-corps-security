@@ -73,11 +73,11 @@ export default function RequestQuotePage() {
 
               <address className="space-y-4 border-t border-white/10 pt-10 not-italic">
                 <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Prefer to talk?</p>
-                <a href={site.phoneHref} className="flex items-center gap-4 text-2xl font-semibold text-white hover:text-gold">
+                <a href={site.phoneHref} className="flex min-h-11 lg:min-h-0 items-center gap-4 text-2xl font-semibold text-white hover:text-gold">
                   <PhoneIcon className="h-6 w-6 text-gold" />
                   {site.phone}
                 </a>
-                <a href={`mailto:${site.email}`} className="flex items-center gap-4 text-white/85 hover:text-gold">
+                <a href={`mailto:${site.email}`} className="flex min-h-11 lg:min-h-0 items-center gap-4 text-white/85 hover:text-gold">
                   <MailIcon className="h-5 w-5 text-gold" />
                   {site.email}
                 </a>

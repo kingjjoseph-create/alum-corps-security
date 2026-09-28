@@ -63,7 +63,7 @@ function PlanningCard() {
   return (
     <aside
       aria-labelledby="planning-heading"
-      className="relative border border-gold/25 bg-gradient-to-b from-graphite/90 to-coal/90 p-7 backdrop-blur-sm sm:p-9"
+      className="relative border border-gold/25 bg-gradient-to-b from-graphite/90 to-coal/90 p-5 backdrop-blur-sm sm:p-9"
     >
       <span aria-hidden="true" className="absolute -top-px -left-px h-8 w-8 border-t-2 border-l-2 border-gold" />
       <span aria-hidden="true" className="absolute -right-px -bottom-px h-8 w-8 border-r-2 border-b-2 border-gold" />

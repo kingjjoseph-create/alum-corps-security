@@ -157,7 +157,7 @@ export default function CareersPage() {
               <Reveal delay={150}>
                 <div className="mt-10 border-t border-white/10 pt-8">
                   <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Questions about working with us?</p>
-                  <a href={site.phoneHref} className="mt-4 flex items-center gap-4 text-xl font-semibold text-white hover:text-gold">
+                  <a href={site.phoneHref} className="mt-4 flex min-h-11 lg:min-h-0 items-center gap-4 text-xl font-semibold text-white hover:text-gold">
                     <PhoneIcon className="h-5 w-5 text-gold" />
                     {site.phone}
                   </a>
