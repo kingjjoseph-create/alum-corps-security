@@ -1,49 +1,12 @@
 "use client";
 
-import { useActionState, type ReactNode } from "react";
+import { useActionState } from "react";
 import { submitQuote, type QuoteState } from "@/app/actions/quote";
+import { Field, inputClass } from "@/components/FormField";
 import { ArrowRightIcon, CheckIcon } from "@/components/Icons";
 import { capabilities, site } from "@/lib/site";
 
 const initial: QuoteState = { status: "idle" };
-
-const inputClass =
-  "mt-2 block w-full border border-white/15 bg-ink/80 px-4 py-3.5 text-white placeholder:text-white/30 transition-colors focus:border-gold focus:outline-none aria-[invalid=true]:border-red-400";
-const labelClass = "text-xs font-semibold tracking-[0.2em] text-white/80 uppercase";
-
-function Field({
-  id,
-  label,
-  required,
-  error,
-  children,
-}: {
-  id: string;
-  label: string;
-  required?: boolean;
-  error?: string;
-  children: ReactNode;
-}) {
-  return (
-    <div>
-      <label htmlFor={id} className={labelClass}>
-        {label}
-        {required && (
-          <span className="text-gold" aria-hidden="true">
-            {" "}
-            *
-          </span>
-        )}
-      </label>
-      {children}
-      {error && (
-        <p id={`${id}-error`} className="mt-2 text-sm text-red-300">
-          {error}
-        </p>
-      )}
-    </div>
-  );
-}
 
 export function QuoteForm({ defaultService = "" }: { defaultService?: string }) {
   const [state, action, pending] = useActionState(submitQuote, initial);

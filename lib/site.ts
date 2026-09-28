@@ -17,8 +17,8 @@ export const site = {
   license: "B3600338",
   licenseLabel: "Florida License #B3600338",
   region: "Florida",
-  /** Where "Get a Quote" CTAs point. Switch to "/request-a-quote" once that page is built. */
-  quoteHref: "/#request-quote",
+  /** Where site-wide "Get a Quote" CTAs point. */
+  quoteHref: "/request-a-quote",
 } as const;
 
 export type NavItem = {

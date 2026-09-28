@@ -33,7 +33,8 @@ components/
   Logo.tsx, Button.tsx, Reveal.tsx (scroll animations), SectionHeading.tsx, Icons.tsx
   home/              Hero, ServicesSection, WhyChoose, Industries, Leadership,
                      QuoteSection + QuoteForm
-app/actions/quote.ts Server action that validates and delivers quote requests
+app/actions/         Server actions: quote.ts (short form), coverage.ts (full form)
+lib/deliver-lead.ts  The one place form submissions are sent (email today; swap for CRM)
 lib/site.ts          Company details, navigation, services, leadership — edit here
 public/images/alum-corps-logo.jpg  Official Alum Corps logo (use as-is; do not alter)
 ```
@@ -45,9 +46,9 @@ public/images/alum-corps-logo.jpg  Official Alum Corps logo (use as-is; do not a
 - **Domain**: set `NEXT_PUBLIC_SITE_URL` (defaults to `https://www.alumcorp.com`) for canonical URLs, sitemap, and structured data.
 - **New pages**: add the route to `app/sitemap.ts` when it is built.
 
-## Quote form delivery
+## Form delivery
 
-The homepage quote form emails each request through [Resend](https://resend.com). Set these environment variables in your host (e.g. Vercel → Settings → Environment Variables):
+Both forms — the short quote form (homepage and service pages) and the full **Request Security Coverage** form at `/request-a-quote` — go through `lib/deliver-lead.ts`. To send leads to a CRM or another backend, change only that file. Today it emails each request through [Resend](https://resend.com). Set these environment variables in your host (e.g. Vercel → Settings → Environment Variables):
 
 | Variable | Required | Purpose |
 | --- | --- | --- |

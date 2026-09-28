@@ -13,6 +13,8 @@ type PageHeroProps = {
   /** Optional right-hand panel (e.g. a quick index of the page). */
   aside?: ReactNode;
   primaryCta?: { label: string; href: string };
+  /** Set false to hide the CTA buttons (e.g. when the page itself is a form). */
+  showCtas?: boolean;
 };
 
 /** Hero for interior pages — shorter than the homepage hero, same atmosphere. */
@@ -23,6 +25,7 @@ export function PageHero({
   breadcrumbs,
   aside,
   primaryCta = { label: "Request Security Coverage", href: "#request-quote" },
+  showCtas = true,
 }: PageHeroProps) {
   return (
     <section
@@ -71,14 +74,16 @@ export function PageHero({
           <div className="mt-8 max-w-2xl animate-fade-up text-lg leading-relaxed text-pretty text-white/75 [animation-delay:300ms] sm:text-xl">
             {intro}
           </div>
-          <div className="mt-10 flex animate-fade-up flex-col gap-4 [animation-delay:400ms] sm:flex-row">
-            <ButtonLink href={primaryCta.href} arrow>
-              {primaryCta.label}
-            </ButtonLink>
-            <ButtonLink href={site.phoneHref} variant="outline">
-              Speak With Our Team
-            </ButtonLink>
-          </div>
+          {showCtas && (
+            <div className="mt-10 flex animate-fade-up flex-col gap-4 [animation-delay:400ms] sm:flex-row">
+              <ButtonLink href={primaryCta.href} arrow>
+                {primaryCta.label}
+              </ButtonLink>
+              <ButtonLink href={site.phoneHref} variant="outline">
+                Speak With Our Team
+              </ButtonLink>
+            </div>
+          )}
         </div>
 
         {aside && <div className="animate-fade-up [animation-delay:500ms] lg:col-span-5">{aside}</div>}
