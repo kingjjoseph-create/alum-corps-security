@@ -39,7 +39,7 @@ export function PageHero({
       <div className="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-12 lg:items-end lg:px-8">
         <div className={aside ? "lg:col-span-7" : "lg:col-span-10"}>
           <nav aria-label="Breadcrumb" className="animate-fade-up">
-            <ol className="flex flex-wrap items-center gap-2 text-xs tracking-[0.2em] text-mist uppercase">
+            <ol className="flex flex-wrap items-center gap-2 text-xs tracking-[0.12em] text-mist uppercase sm:tracking-[0.2em]">
               {breadcrumbs.map((c, i) => (
                 <li key={c.label} className="flex items-center gap-2">
                   {i > 0 && (

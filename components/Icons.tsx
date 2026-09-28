@@ -304,3 +304,25 @@ export const SirenIcon = (p: IconProps) => (
     <path d="M4 21h16M5 18h14M12 3v2M4.2 6.2l1.4 1.4M19.8 6.2l-1.4 1.4" />
   </Base>
 );
+
+export const GateIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3 21V5M21 21V5M3 9h18M3 17h18" />
+    <path d="M7 9v8M11 9v8M15 9v8M19 9v8" />
+  </Base>
+);
+
+export const SunIcon = (p: IconProps) => (
+  <Base {...p}>
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+  </Base>
+);
+
+export const WavesIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M2 8c2 0 2-1.5 4-1.5S8 8 10 8s2-1.5 4-1.5S16 8 18 8s2-1.5 4-1.5" />
+    <path d="M2 13c2 0 2-1.5 4-1.5S8 13 10 13s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5" />
+    <path d="M2 18c2 0 2-1.5 4-1.5S8 18 10 18s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5" />
+  </Base>
+);
