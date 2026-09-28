@@ -1,8 +1,17 @@
 "use client";
 
-import { useActionState, useState, type FormEvent, type ReactNode } from "react";
+import { useActionState, useState, type FormEvent } from "react";
 import { submitCoverageRequest } from "@/app/actions/coverage";
-import { Field, FieldError, RequiredMark, inputClass, invalidProps, labelClass } from "@/components/FormField";
+import {
+  ChoiceGroup,
+  Field,
+  FieldError,
+  FormSection as Section,
+  RequiredMark,
+  inputClass,
+  invalidProps,
+  labelClass,
+} from "@/components/FormField";
 import { ArrowRightIcon, CheckIcon, ShieldIcon } from "@/components/Icons";
 import {
   armedOptions,
@@ -14,57 +23,6 @@ import {
 import { site } from "@/lib/site";
 
 const initial: CoverageState = { status: "idle" };
-
-function Section({ number, title, children }: { number: string; title: string; children: ReactNode }) {
-  return (
-    <fieldset className="border-t border-white/10 pt-10 first:border-t-0 first:pt-0">
-      <legend className="float-left mb-8 flex w-full items-center gap-4">
-        <span className="font-display text-3xl font-semibold text-gold-gradient">{number}</span>
-        <span className="text-sm font-semibold tracking-[0.25em] text-white uppercase">{title}</span>
-      </legend>
-      <div className="clear-both grid gap-6 sm:grid-cols-2">{children}</div>
-    </fieldset>
-  );
-}
-
-/** Segmented radio control (e.g. Armed / Unarmed). */
-function Choice({
-  name,
-  label,
-  options,
-  defaultValue,
-  className = "",
-}: {
-  name: string;
-  label: string;
-  options: readonly string[];
-  defaultValue?: string;
-  className?: string;
-}) {
-  return (
-    <div role="radiogroup" aria-labelledby={`${name}-label`} className={className}>
-      <p id={`${name}-label`} className={labelClass}>
-        {label}
-      </p>
-      <div className="mt-2 grid auto-cols-fr grid-flow-col gap-2">
-        {options.map((opt) => (
-          <label key={opt} className="relative cursor-pointer">
-            <input
-              type="radio"
-              name={name}
-              value={opt}
-              defaultChecked={defaultValue === opt}
-              className="peer sr-only"
-            />
-            <span className="flex h-full items-center justify-center border border-white/15 bg-ink/80 px-3 py-3.5 text-center text-sm font-medium text-white/75 transition-all peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-gold peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-gold hover:border-white/40">
-              {opt}
-            </span>
-          </label>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export function CoverageForm() {
   const [state, action, pending] = useActionState(submitCoverageRequest, initial);
@@ -177,8 +135,8 @@ export function CoverageForm() {
             {...invalidProps("guards", err.guards)}
           />
         </Field>
-        <Choice name="armed" label="Armed / Unarmed" options={armedOptions} defaultValue={v.armed} />
-        <Choice name="vehiclePatrol" label="Vehicle patrol required?" options={vehiclePatrolOptions} defaultValue={v.vehiclePatrol} />
+        <ChoiceGroup name="armed" label="Armed / Unarmed" options={armedOptions} defaultValue={v.armed} />
+        <ChoiceGroup name="vehiclePatrol" label="Vehicle patrol required?" options={vehiclePatrolOptions} defaultValue={v.vehiclePatrol} />
         <div className="sm:col-span-2">
           <Field
             id="attendance"
@@ -213,7 +171,7 @@ export function CoverageForm() {
             {...invalidProps("startDate", err.startDate)}
           />
         </Field>
-        <Choice name="frequency" label="Recurring or one-time" options={frequencyOptions} defaultValue={v.frequency} />
+        <ChoiceGroup name="frequency" label="Recurring or one-time" options={frequencyOptions} defaultValue={v.frequency} />
         <div className="sm:col-span-2">
           <Field id="hours" label="Hours required">
             <input

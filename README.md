@@ -57,3 +57,20 @@ Both forms — the short quote form (homepage and service pages) and the full **
 | `QUOTE_FROM_EMAIL` | no | Sender, e.g. `Alum Corps Website <quotes@alumcorp.com>` (requires a verified domain in Resend) |
 
 Without a key, requests are printed to the terminal during `npm run dev`, and in production visitors are shown the phone number and email instead — requests are never silently lost.
+
+## Enabling online applications (Careers)
+
+The Careers application form (`/careers`) is **design-only by default**. It collects license numbers and resumes, so it must not go live until a secure backend is in place.
+
+Current safeguards:
+
+- `applicationsEnabled = false` in `lib/careers.ts`.
+- There is **no server endpoint** for applications, and the form always blocks native submission (so field values can never end up in the URL).
+- In production the form renders **locked** (all fields disabled) with an "opening soon" notice. During `npm run dev` it is interactive for design review, but still sends nothing.
+
+Before setting `applicationsEnabled = true`, connect a secure destination. The simplest option is an applicant tracking system (e.g. BambooHR, Workable, JazzHR) via its hosted form or API. If you build your own, you need at minimum:
+
+1. A server action or route that validates every field and file (type, size) server-side.
+2. Private, encrypted file storage for resumes (never a public bucket), with access limited to hiring staff.
+3. Delivery that doesn't put resumes or license numbers in plain email.
+4. A data-retention policy and a privacy notice on the form.
