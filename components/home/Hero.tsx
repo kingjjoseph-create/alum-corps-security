@@ -57,7 +57,7 @@ export function Hero() {
           <ButtonLink href="#request-quote" arrow>
             Request Security Coverage
           </ButtonLink>
-          <ButtonLink href={site.phoneHref} variant="outline">
+          <ButtonLink href="/contact" variant="outline">
             Speak With Our Team
           </ButtonLink>
         </div>

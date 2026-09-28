@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useState, type FormEvent } from "react";
 import { submitCoverageRequest } from "@/app/actions/coverage";
 import {
@@ -62,7 +63,7 @@ export function CoverageForm() {
           </a>
           .
         </p>
-        {state.message && <p className="mt-4 text-xs text-white/40">{state.message}</p>}
+        {state.message && <p className="mt-4 text-xs text-white/50">{state.message}</p>}
       </div>
     );
   }
@@ -231,7 +232,11 @@ export function CoverageForm() {
           {!pending && <ArrowRightIcon className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />}
         </button>
         <p className="mt-5 text-center text-sm text-mist">
-          No obligation. Our team will contact you to discuss your needs — or call{" "}
+          No obligation. By submitting, you agree to our{" "}
+          <Link href="/privacy" className="text-gold underline decoration-gold/40 underline-offset-4 hover:text-gold-light">
+            Privacy Policy
+          </Link>
+          . Prefer to talk? Call{" "}
           <a href={site.phoneHref} className="text-gold hover:text-gold-light">
             {site.phone}
           </a>

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { navigation, site } from "@/lib/site";
 import { ButtonLink } from "./Button";
-import { ChevronDownIcon, CloseIcon, MailIcon, MenuIcon, PhoneIcon } from "./Icons";
+import { ChevronDownIcon, CloseIcon, MailIcon, MenuIcon, PhoneIcon, ShieldIcon } from "./Icons";
 import { Logo } from "./Logo";
 
 export function Header() {
@@ -234,6 +234,9 @@ export function Header() {
             <a href={`mailto:${site.email}`} className="flex items-center gap-3 py-2 hover:text-gold">
               <MailIcon className="h-4 w-4 text-gold" /> {site.email}
             </a>
+            <p className="mt-4 flex items-center gap-3 border-t border-white/10 pt-5 text-xs tracking-[0.18em] uppercase">
+              <ShieldIcon className="h-4 w-4 text-gold" /> {site.licenseLabel}
+            </p>
           </li>
         </ul>
       </div>

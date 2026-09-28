@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState } from "react";
 import { submitQuote, type QuoteState } from "@/app/actions/quote";
 import { Field, inputClass } from "@/components/FormField";
@@ -29,7 +30,7 @@ export function QuoteForm({ defaultService = "" }: { defaultService?: string }) 
           </a>
           .
         </p>
-        {state.message && <p className="mt-4 text-xs text-white/40">{state.message}</p>}
+        {state.message && <p className="mt-4 text-xs text-white/50">{state.message}</p>}
       </div>
     );
   }
@@ -87,7 +88,17 @@ export function QuoteForm({ defaultService = "" }: { defaultService?: string }) 
 
       <div className="flex flex-col gap-5 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <p role="status" aria-live="polite" className={`text-sm ${state.status === "error" ? "text-red-300" : "text-mist"}`}>
-          {state.status === "error" ? state.message : "Email or phone required. We respond promptly."}
+          {state.status === "error" ? (
+            state.message
+          ) : (
+            <>
+              Email or phone required. See our{" "}
+              <Link href="/privacy" className="text-gold underline decoration-gold/40 underline-offset-4 hover:text-gold-light">
+                Privacy Policy
+              </Link>
+              .
+            </>
+          )}
         </p>
         <button
           type="submit"

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 export const inputClass =
-  "mt-2 block w-full border border-white/15 bg-ink/80 px-4 py-3.5 text-white placeholder:text-white/30 transition-colors focus:border-gold focus:outline-none aria-[invalid=true]:border-red-400";
+  "mt-2 block w-full border border-white/15 bg-ink/80 px-4 py-3.5 text-white placeholder:text-white/45 transition-colors focus:border-gold focus:outline-none aria-[invalid=true]:border-red-400";
 export const labelClass = "text-xs font-semibold tracking-[0.2em] text-white/80 uppercase";
 
 export function RequiredMark() {
@@ -42,7 +42,7 @@ export function Field({
       <label htmlFor={id} className={labelClass}>
         {label}
         {required && <RequiredMark />}
-        {hint && <span className="ml-2 font-normal tracking-normal text-white/40 normal-case">{hint}</span>}
+        {hint && <span className="ml-2 font-normal tracking-normal text-white/60 normal-case">{hint}</span>}
       </label>
       {children}
       <FieldError id={id} error={error} />
@@ -96,7 +96,7 @@ export function ChoiceGroup({
       <legend className={labelClass}>
         {label}
         {required && <RequiredMark />}
-        {hint && <span className="ml-2 font-normal tracking-normal text-white/40 normal-case">{hint}</span>}
+        {hint && <span className="ml-2 font-normal tracking-normal text-white/60 normal-case">{hint}</span>}
       </legend>
       <div className={`mt-2 grid gap-2 ${multiple ? "grid-cols-2 sm:grid-cols-3" : "auto-cols-fr grid-flow-col"}`}>
         {options.map((opt) => (

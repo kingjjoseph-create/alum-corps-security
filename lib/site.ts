@@ -11,12 +11,27 @@ export const site = {
     "Alum Corps Security LLC is a licensed Florida security agency providing disciplined, professional commercial, residential, and event security services.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.alumcorp.com",
   email: "Security@alumcorp.com",
-  phone: "561-933-4479",
+  /** Display format; standard (xxx) xxx-xxxx reads as an established business line. */
+  phone: "(561) 933-4479",
   phoneHref: "tel:+15619334479",
-  fax: "954-915-4229",
+  phoneE164: "+1-561-933-4479",
+  fax: "(954) 915-4229",
+  faxE164: "+1-954-915-4229",
   license: "B3600338",
   licenseLabel: "Florida License #B3600338",
+  licenseClass: "Class \u201CB\u201D Security Agency",
+  licenseIssuer: "Florida Department of Agriculture and Consumer Services, Division of Licensing",
+  /** Where visitors can confirm the license. Verify this link opens correctly before launch. */
+  licenseVerifyUrl: "https://www.fdacs.gov/Divisions-Offices/Licensing",
   region: "Florida",
+  /** Primary service area, shown in the footer, Contact, About, and structured data. */
+  serviceAreas: ["Palm Beach County", "Broward County", "Miami-Dade County"],
+  serviceAreaNote: "Additional Florida locations available on request.",
+  serviceRegionLabel: "South Florida",
+  /** Optional public business address — leave empty to hide it everywhere. */
+  address: null as null | { street: string; city: string; region: string; postalCode: string },
+  /** Shown on the Privacy Policy, Terms of Use, and Accessibility pages. */
+  legalLastUpdated: "September 28, 2026",
   /** Where site-wide "Get a Quote" CTAs point. */
   quoteHref: "/request-a-quote",
 } as const;
@@ -80,19 +95,19 @@ export const capabilities = [
   {
     slug: "mobile-patrol",
     title: "Mobile Patrol",
-    href: "/services",
+    href: "/services#mobile-patrol",
     summary: "Patrol officers conducting scheduled and randomized checks across one or many sites.",
   },
   {
     slug: "access-control",
     title: "Access Control",
-    href: "/services",
+    href: "/services#access-control",
     summary: "Gatehouse, lobby, and entry-point management that verifies every person and vehicle.",
   },
   {
     slug: "property-protection",
     title: "Property Protection",
-    href: "/services",
+    href: "/services#property-protection",
     summary: "Deterrence and asset protection for vacant properties, construction sites, and facilities.",
   },
 ] as const;
@@ -112,7 +127,25 @@ export const navigation: NavItem[] = [
 ];
 
 export const leadership = [
-  { name: "Jasnel Sertilus", role: "Chief Executive Officer", title: "CEO", initials: "JS" },
-  { name: "Rudjeri Joseph", role: "Chief Operating Officer", title: "COO", initials: "RJ" },
-  { name: "Junior Dumezil", role: "Chief Technology Officer", title: "CTO", initials: "JD" },
+  {
+    name: "Jasnel Sertilus",
+    role: "Chief Executive Officer",
+    title: "CEO",
+    initials: "JS",
+    focus: "Leads company strategy, standards, and client relationships.",
+  },
+  {
+    name: "Rudjeri Joseph",
+    role: "Chief Operating Officer",
+    title: "COO",
+    initials: "RJ",
+    focus: "Oversees field operations, scheduling, and officer supervision.",
+  },
+  {
+    name: "Junior Dumezil",
+    role: "Chief Technology Officer",
+    title: "CTO",
+    initials: "JD",
+    focus: "Directs technology, reporting systems, and operational tools.",
+  },
 ] as const;

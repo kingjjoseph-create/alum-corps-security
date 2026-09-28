@@ -41,7 +41,8 @@ public/images/alum-corps-logo.jpg  Official Alum Corps logo (use as-is; do not a
 
 ## Customizing
 
-- **Company info** (phone, email, fax, license, leadership): `lib/site.ts`.
+- **Company info** (phone, email, fax, license and verification link, service areas, optional business address, leadership, legal "last updated" date): `lib/site.ts`. The address is hidden everywhere until you fill it in.
+- **Legal pages** (`/privacy`, `/terms`, `/accessibility`) are written to match what the site actually does. Have them reviewed by your attorney before launch, and update them if you add analytics, chat, or new forms.
 - **Logo**: `public/images/alum-corps-logo.jpg` is the official logo, used unmodified. `app/icon.png` and `app/apple-icon.png` are resized copies for browser tabs and home-screen icons. The accent gold in `app/globals.css` (`--color-gold: #dead2f`) is matched to the logo.
 - **Domain**: set `NEXT_PUBLIC_SITE_URL` (defaults to `https://www.alumcorp.com`) for canonical URLs, sitemap, and structured data.
 - **New pages**: add the route to `app/sitemap.ts` when it is built.

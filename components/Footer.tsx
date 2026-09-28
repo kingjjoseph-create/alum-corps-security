@@ -4,6 +4,12 @@ import { ButtonLink } from "./Button";
 import { FaxIcon, MailIcon, PhoneIcon, ShieldIcon } from "./Icons";
 import { Logo } from "./Logo";
 
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Use", href: "/terms" },
+  { label: "Accessibility", href: "/accessibility" },
+];
+
 export function Footer() {
   const year = new Date().getFullYear();
   const companyLinks = [
@@ -22,12 +28,28 @@ export function Footer() {
         <div className="sm:col-span-2 lg:col-span-4">
           <Logo className="h-28" />
           <p className="mt-6 max-w-sm leading-relaxed text-mist">
-            Disciplined, professional protection for Florida businesses, residences, and events.
+            {site.legalName} provides licensed commercial, residential, and event security across{" "}
+            {site.serviceRegionLabel}.
           </p>
-          <p className="mt-6 inline-flex items-center gap-2 border border-gold/30 px-4 py-2 text-xs font-semibold tracking-[0.2em] text-gold uppercase">
-            <ShieldIcon className="h-4 w-4" />
-            {site.licenseLabel}
-          </p>
+
+          {/* License block — the single most important trust signal for a security agency. */}
+          <div className="mt-8 max-w-sm border border-gold/30 bg-ink/40 p-5">
+            <p className="flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-gold uppercase">
+              <ShieldIcon className="h-4 w-4" />
+              {site.licenseLabel}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-mist">
+              {site.licenseClass} licensed by the {site.licenseIssuer}.
+            </p>
+            <a
+              href={site.licenseVerifyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-block text-sm text-gold underline decoration-gold/40 underline-offset-4 hover:text-gold-light"
+            >
+              Verify with the Division of Licensing<span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          </div>
         </div>
 
         <nav aria-label="Services" className="lg:col-span-2">
@@ -82,7 +104,22 @@ export function Footer() {
               <FaxIcon className="h-5 w-5 shrink-0 text-gold" />
               <span>Fax: {site.fax}</span>
             </p>
+            {site.address && (
+              <p className="pl-8 text-mist">
+                {site.address.street}
+                <br />
+                {site.address.city}, {site.address.region} {site.address.postalCode}
+              </p>
+            )}
           </address>
+
+          <h3 className="mt-8 text-xs font-semibold tracking-[0.3em] text-gold uppercase">Service Areas</h3>
+          <p className="mt-3 text-sm leading-relaxed text-mist">
+            {site.serviceAreas.join(" · ")}
+            <br />
+            <span className="text-white/50">{site.serviceAreaNote}</span>
+          </p>
+
           <ButtonLink href="/contact" variant="outline" arrow className="mt-8">
             Speak With Our Team
           </ButtonLink>
@@ -90,11 +127,21 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/5">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-6 text-xs text-mist sm:flex-row sm:items-center sm:justify-between lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 text-xs text-mist lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <p>
-            &copy; {year} {site.legalName}. All rights reserved.
+            &copy; {year} {site.legalName}. All rights reserved. {site.licenseLabel}.
           </p>
-          <p className="tracking-[0.15em] uppercase">{site.licenseLabel}</p>
+          <nav aria-label="Legal">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              {legalLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="transition-colors hover:text-gold">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
     </footer>

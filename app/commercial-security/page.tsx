@@ -124,7 +124,7 @@ export default function CommercialSecurityPage() {
                       <span className="flex h-14 w-14 shrink-0 items-center justify-center border border-gold/40 text-gold">
                         <SectorIcon id={s.id} className="h-7 w-7" />
                       </span>
-                      <span className="font-display text-lg text-white/30">{String(i + 1).padStart(2, "0")}</span>
+                      <span aria-hidden="true" className="font-display text-lg text-white/60">{String(i + 1).padStart(2, "0")}</span>
                     </div>
                     <h3 className="mt-6 font-display text-4xl leading-tight font-semibold text-white">{s.title}</h3>
                   </div>

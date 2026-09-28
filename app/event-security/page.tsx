@@ -151,7 +151,7 @@ export default function EventSecurityPage() {
                 />
                 <div className="flex items-start justify-between">
                   <EventServiceIcon id={s.id} className="h-10 w-10 text-gold transition-transform duration-500 group-hover:-translate-y-1" />
-                  <span className="font-display text-lg text-white/25 transition-colors duration-500 group-hover:text-gold/70">
+                  <span aria-hidden="true" className="font-display text-lg text-white/60 transition-colors duration-500 group-hover:text-gold">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>

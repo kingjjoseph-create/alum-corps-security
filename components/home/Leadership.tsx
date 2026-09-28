@@ -32,28 +32,29 @@ export function Leadership() {
 
         <ul className="mt-16 grid gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
           {leadership.map((person, i) => (
-            <Reveal as="li" key={person.name} delay={i * 120} className="group">
-              {/* Portrait frame — replace the monogram with an <Image fill> headshot when available. */}
-              <div className="relative aspect-[4/5] overflow-hidden border border-white/10 bg-gradient-to-b from-graphite via-coal to-ink transition-colors duration-500 group-hover:border-gold/40">
-                <div aria-hidden="true" className="bg-grid absolute inset-0 opacity-30 [mask-image:linear-gradient(to_top,black,transparent)]" />
-                <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(ellipse_at_bottom,rgb(222_173_47/0.18),transparent_70%)]" />
+            <Reveal as="li" key={person.name} delay={i * 120}>
+              {/* Executive card. When headshots are available, swap the monogram for an <Image>. */}
+              <article className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-gradient-to-b from-graphite to-ink p-8 transition-colors duration-500 hover:border-gold/40 sm:p-9">
                 <span
                   aria-hidden="true"
-                  className="absolute inset-0 flex items-center justify-center font-display text-[7rem] font-semibold text-gold-gradient opacity-80 transition-transform duration-700 group-hover:scale-105"
-                >
-                  {person.initials}
-                </span>
-                <span className="absolute top-5 left-5 border border-gold/40 bg-ink/60 px-3 py-1 text-xs font-semibold tracking-[0.3em] text-gold backdrop-blur-sm">
-                  {person.title}
-                </span>
-              </div>
-              <div className="mt-6 flex items-start gap-4">
-                <span aria-hidden="true" className="mt-4 h-px w-8 bg-gold transition-all duration-500 group-hover:w-12" />
-                <div>
-                  <h3 className="font-display text-3xl font-semibold text-white">{person.name}</h3>
-                  <p className="mt-1 text-xs font-semibold tracking-[0.28em] text-mist uppercase">{person.role}</p>
+                  className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-gold-dark via-gold-light to-gold transition-transform duration-500 group-hover:scale-x-100"
+                />
+                <div className="flex items-center justify-between">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/60 bg-ink font-display text-2xl font-semibold text-gold"
+                  >
+                    {person.initials}
+                  </span>
+                  <span className="border border-gold/40 px-3 py-1 text-xs font-semibold tracking-[0.3em] text-gold">
+                    {person.title}
+                  </span>
                 </div>
-              </div>
+                <h3 className="mt-8 font-display text-3xl font-semibold text-white">{person.name}</h3>
+                <p className="mt-1 text-xs font-semibold tracking-[0.28em] text-mist uppercase">{person.role}</p>
+                <span aria-hidden="true" className="mt-6 h-px w-10 bg-gold transition-all duration-500 group-hover:w-16" />
+                <p className="mt-6 leading-relaxed text-white/75">{person.focus}</p>
+              </article>
             </Reveal>
           ))}
         </ul>

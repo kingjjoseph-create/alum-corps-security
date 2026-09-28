@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ButtonLink } from "./Button";
-import { site } from "@/lib/site";
 
 type Crumb = { label: string; href?: string };
 
@@ -79,7 +78,7 @@ export function PageHero({
               <ButtonLink href={primaryCta.href} arrow>
                 {primaryCta.label}
               </ButtonLink>
-              <ButtonLink href={site.phoneHref} variant="outline">
+              <ButtonLink href="/contact" variant="outline">
                 Speak With Our Team
               </ButtonLink>
             </div>

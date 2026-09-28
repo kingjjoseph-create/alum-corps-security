@@ -65,10 +65,38 @@ const jsonLd = {
   logo: `${site.url}${logoSrc}`,
   image: `${site.url}${logoSrc}`,
   email: site.email,
-  telephone: `+1-${site.phone}`,
-  faxNumber: `+1-${site.fax}`,
+  telephone: site.phoneE164,
+  faxNumber: site.faxE164,
   description: site.description,
-  areaServed: { "@type": "State", name: site.region },
+  areaServed: site.serviceAreas.map((name) => ({
+    "@type": "AdministrativeArea",
+    name: `${name}, ${site.region}`,
+  })),
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    telephone: site.phoneE164,
+    email: site.email,
+    areaServed: "US-FL",
+    availableLanguage: "English",
+  },
+  ...(site.address && {
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: site.address.street,
+      addressLocality: site.address.city,
+      addressRegion: site.address.region,
+      postalCode: site.address.postalCode,
+      addressCountry: "US",
+    },
+  }),
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "license",
+    name: `${site.licenseClass} License`,
+    identifier: site.license,
+    recognizedBy: { "@type": "GovernmentOrganization", name: site.licenseIssuer },
+  },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Security Services",
@@ -77,7 +105,6 @@ const jsonLd = {
       itemOffered: { "@type": "Service", name: s.title, description: s.summary, url: `${site.url}${s.href}` },
     })),
   },
-  identifier: { "@type": "PropertyValue", name: "Florida Security Agency License", value: site.license },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
