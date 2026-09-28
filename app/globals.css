@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #070707;
+  --color-coal: #0e0e0e;
+  --color-graphite: #161616;
+  --color-steel: #262626;
+  --color-mist: #a3a3a3;
+  --color-gold: #c9a44c;
+  --color-gold-light: #e8cf8a;
+  --color-gold-dark: #9a7a2e;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
+
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-shimmer: shimmer 6s linear infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      background-position: 0% 50%;
+    }
+    to {
+      background-position: 200% 50%;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-ink text-white font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-gold text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-gold;
+  }
+}
+
+@layer components {
+  /* Metallic gold text treatment used on key words in headings. */
+  .text-gold-gradient {
+    background: linear-gradient(100deg, #9a7a2e 0%, #e8cf8a 30%, #c9a44c 55%, #f3e2b0 75%, #9a7a2e 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-gold sm:tracking-[0.3em];
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-gold/70;
+  }
+
+  /* Faint architectural grid used behind hero and feature sections. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(201 164 76 / 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(201 164 76 / 0.07) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .gold-rule {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-gold/50 to-transparent;
+  }
+}
+
+/* Scroll-reveal: elements start hidden only when JS is available (see Reveal.tsx). */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Desktop nav link with animated gold underline. */
+.nav-link {
+  position: relative;
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--color-gold);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0.2rem;
+  height: 1px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}

@@ -1,0 +1,220 @@
+import type { SVGProps } from "react";
+
+type IconProps = SVGProps<SVGSVGElement>;
+
+function Base({ children, ...props }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+      {...props}
+    >
+      {children}
+    </svg>
+  );
+}
+
+export const ShieldIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3Z" />
+    <path d="m9 12 2 2 4-4" />
+  </Base>
+);
+
+export const BuildingIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M4 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16" />
+    <path d="M15 9h4a1 1 0 0 1 1 1v11" />
+    <path d="M3 21h18M8 8h3M8 12h3M8 16h3" />
+  </Base>
+);
+
+export const HomeIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="m3 11 9-7 9 7" />
+    <path d="M5 10v10h14V10" />
+    <path d="M10 20v-5h4v5" />
+  </Base>
+);
+
+export const TicketIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3 6h18v4a2 2 0 0 0 0 4v4H3v-4a2 2 0 0 0 0-4V6Z" />
+    <path d="M15 6v12" strokeDasharray="2 2" />
+  </Base>
+);
+
+export const BadgeIcon = (p: IconProps) => (
+  <Base {...p}>
+    <circle cx="12" cy="9" r="5" />
+    <path d="m9 13.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5" />
+  </Base>
+);
+
+export const TargetIcon = (p: IconProps) => (
+  <Base {...p}>
+    <circle cx="12" cy="12" r="8" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="12" cy="12" r="0.5" fill="currentColor" />
+  </Base>
+);
+
+export const ClipboardIcon = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="5" y="4" width="14" height="17" rx="1.5" />
+    <path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3" />
+  </Base>
+);
+
+export const RadioIcon = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="6" y="8" width="12" height="13" rx="1.5" />
+    <path d="M9 8 15 3M9 13h6M9 17h2" />
+  </Base>
+);
+
+export const ClockIcon = (p: IconProps) => (
+  <Base {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 2" />
+  </Base>
+);
+
+export const UsersIcon = (p: IconProps) => (
+  <Base {...p}>
+    <circle cx="9" cy="8" r="3.5" />
+    <path d="M2.5 20a6.5 6.5 0 0 1 13 0" />
+    <path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6" />
+  </Base>
+);
+
+export const PhoneIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
+  </Base>
+);
+
+export const MailIcon = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="3" y="5" width="18" height="14" rx="1.5" />
+    <path d="m3 7 9 6 9-6" />
+  </Base>
+);
+
+export const FaxIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M7 9V3h10v6" />
+    <rect x="3" y="9" width="18" height="9" rx="1.5" />
+    <path d="M7 14h10v7H7z" />
+  </Base>
+);
+
+export const ArrowRightIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </Base>
+);
+
+export const ChevronDownIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="m6 9 6 6 6-6" />
+  </Base>
+);
+
+export const MenuIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M4 7h16M4 12h16M4 17h16" />
+  </Base>
+);
+
+export const CloseIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M6 6l12 12M18 6 6 18" />
+  </Base>
+);
+
+export const CheckIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="m5 12 5 5L20 7" />
+  </Base>
+);
+
+export const StoreIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M4 10v10h16V10M3 6l1.5-3h15L21 6v1.5a2.5 2.5 0 0 1-4.5 1.5 2.5 2.5 0 0 1-4.5 0 2.5 2.5 0 0 1-4.5 0A2.5 2.5 0 0 1 3 7.5V6Z" />
+    <path d="M10 20v-5h4v5" />
+  </Base>
+);
+
+export const HardHatIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3 17h18M5 17v-3a7 7 0 0 1 14 0v3" />
+    <path d="M10 7.5V5h4v2.5" />
+  </Base>
+);
+
+export const HotelIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3 20V9l9-5 9 5v11" />
+    <path d="M3 20h18M8 20v-6h8v6M8 11h.01M12 11h.01M16 11h.01" />
+  </Base>
+);
+
+export const HeartPulseIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M20 8.5C20 5.5 17.8 4 15.8 4 14 4 12.8 5 12 6.2 11.2 5 10 4 8.2 4 6.2 4 4 5.5 4 8.5 4 13 12 20 12 20s8-7 8-11.5Z" />
+    <path d="M4.5 12H9l1.5-2.5 2 5 1.5-2.5h5" />
+  </Base>
+);
+
+export const MusicIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M9 18V5l11-2v13" />
+    <circle cx="6.5" cy="18" r="2.5" />
+    <circle cx="17.5" cy="16" r="2.5" />
+  </Base>
+);
+
+export const GraduationIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="m2 9 10-5 10 5-10 5L2 9Z" />
+    <path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6" />
+  </Base>
+);
+
+export const ChurchIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 2v4M10 4h4M6 21V11l6-4 6 4v10" />
+    <path d="M3 21h18M10 21v-4a2 2 0 0 1 4 0v4" />
+  </Base>
+);
+
+export const KeyIcon = (p: IconProps) => (
+  <Base {...p}>
+    <circle cx="8" cy="15" r="4" />
+    <path d="m11 12 9-9M17 6l2 2M15 8l2 2" />
+  </Base>
+);
+
+export const TruckIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M2 6h11v10H2zM13 10h4l4 4v2h-8" />
+    <circle cx="6" cy="18" r="2" />
+    <circle cx="17" cy="18" r="2" />
+  </Base>
+);
+
+export const CarIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M4 16v-4l2-5h12l2 5v4H4Z" />
+    <path d="M4 12h16" />
+    <circle cx="7.5" cy="16.5" r="1.5" />
+    <circle cx="16.5" cy="16.5" r="1.5" />
+  </Base>
+);
