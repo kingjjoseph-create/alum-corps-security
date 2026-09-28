@@ -53,7 +53,12 @@ export function Header() {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
   }, [mobileOpen]);
 
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (pathname.startsWith(href)) return true;
+    const item = navigation.find((n) => n.href === href);
+    return !!item?.children?.some((c) => pathname.startsWith(c.href));
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">

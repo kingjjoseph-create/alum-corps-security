@@ -218,3 +218,45 @@ export const CarIcon = (p: IconProps) => (
     <circle cx="16.5" cy="16.5" r="1.5" />
   </Base>
 );
+
+export const SolarIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M4 14h16l-2.5-8h-11L4 14Z" />
+    <path d="M12 6v8M5.5 10h13M9 6l-1 8M15 6l1 8M12 14v4M8 21h8M12 18v3" />
+  </Base>
+);
+
+export const FactoryIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3 21V10l5 3V10l5 3V10l5 3V4h3v17H3Z" />
+    <path d="M7 17h2M12 17h2M17 17h1" />
+  </Base>
+);
+
+export const ApartmentIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3 21h18M5 21V7l7-4 7 4v14" />
+    <path d="M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 21v-4h4v4" />
+  </Base>
+);
+
+export const WarehouseIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3 21V9l9-5 9 5v12" />
+    <path d="M7 21v-8h10v8M7 16h10" />
+  </Base>
+);
+
+export const ParkingIcon = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="4" y="4" width="16" height="16" rx="2" />
+    <path d="M10 17V7h3a3 3 0 0 1 0 6h-3" />
+  </Base>
+);
+
+export const EyeIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+    <circle cx="12" cy="12" r="3" />
+  </Base>
+);

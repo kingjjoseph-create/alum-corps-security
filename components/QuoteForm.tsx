@@ -45,7 +45,7 @@ function Field({
   );
 }
 
-export function QuoteForm() {
+export function QuoteForm({ defaultService = "" }: { defaultService?: string }) {
   const [state, action, pending] = useActionState(submitQuote, initial);
   const err = state.errors ?? {};
   const v = state.values ?? {};
@@ -92,7 +92,7 @@ export function QuoteForm() {
       </Field>
       <div className="sm:col-span-2">
         <Field id="service" label="Service needed" required error={err.service}>
-          <select id="service" name="service" required defaultValue={v.service ?? ""} className={inputClass} {...aria("service")}>
+          <select id="service" name="service" required defaultValue={v.service ?? defaultService} className={inputClass} {...aria("service")}>
             <option value="" disabled>
               Select a service
             </option>

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { FaxIcon, MailIcon, PhoneIcon } from "@/components/Icons";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -10,7 +11,22 @@ const steps = [
   "We deliver a tailored security plan and proposal.",
 ];
 
-export function QuoteSection() {
+type QuoteSectionProps = {
+  title?: ReactNode;
+  intro?: string;
+  /** Preselects the "Service needed" field, e.g. "Commercial Security". */
+  defaultService?: string;
+};
+
+export function QuoteSection({
+  title = (
+    <>
+      Request security <span className="text-gold-gradient italic">coverage.</span>
+    </>
+  ),
+  intro = "Share a few details and our team will prepare a coverage plan built around your site, schedule, and risks.",
+  defaultService,
+}: QuoteSectionProps) {
   return (
     <section id="request-quote" aria-labelledby="quote-heading" className="relative scroll-mt-24 overflow-hidden py-28 sm:py-36">
       <div aria-hidden="true" className="absolute top-0 -right-40 h-[36rem] w-[36rem] rounded-full bg-gold/10 blur-[140px]" />
@@ -19,12 +35,8 @@ export function QuoteSection() {
           <SectionHeading
             id="quote-heading"
             eyebrow="Request a Quote"
-            title={
-              <>
-                Request security <span className="text-gold-gradient italic">coverage.</span>
-              </>
-            }
-            intro="Share a few details and our team will prepare a coverage plan built around your site, schedule, and risks."
+            title={title}
+            intro={intro}
           />
 
           <Reveal delay={100}>
@@ -63,7 +75,7 @@ export function QuoteSection() {
           <div className="relative border border-gold/25 bg-gradient-to-b from-graphite to-coal p-7 shadow-[0_40px_120px_-50px_rgb(222_173_47/0.4)] sm:p-12">
             <span aria-hidden="true" className="absolute -top-px -left-px h-10 w-10 border-t-2 border-l-2 border-gold" />
             <span aria-hidden="true" className="absolute -right-px -bottom-px h-10 w-10 border-r-2 border-b-2 border-gold" />
-            <QuoteForm />
+            <QuoteForm defaultService={defaultService} />
           </div>
         </Reveal>
       </div>
