@@ -61,6 +61,10 @@
   .text-gold-gradient {
     background: linear-gradient(100deg, #b8891c 0%, #f2cc66 30%, #dead2f 55%, #f7dc8e 75%, #b8891c 100%);
     background-size: 200% auto;
+    /* Room for italic overhang, repeated on each wrapped line so glyphs aren't clipped. */
+    padding-inline-end: 0.1em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

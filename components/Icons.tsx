@@ -260,3 +260,47 @@ export const EyeIcon = (p: IconProps) => (
     <circle cx="12" cy="12" r="3" />
   </Base>
 );
+
+export const DoorIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M4 21h16M6 21V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v17" />
+    <path d="M13 12h.01M19 8l2 2-2 2M21 10h-4" />
+  </Base>
+);
+
+export const IdCardIcon = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="3" y="5" width="18" height="14" rx="1.5" />
+    <circle cx="9" cy="11" r="2" />
+    <path d="M5.5 16a3.5 3.5 0 0 1 7 0M15 10h3M15 13h3" />
+  </Base>
+);
+
+export const CrownIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="m3 8 4.5 4L12 5l4.5 7L21 8l-2 10H5L3 8Z" />
+    <path d="M5 21h14" />
+  </Base>
+);
+
+export const BagIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M5 8h14l-1 13H6L5 8Z" />
+    <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+    <path d="m10 14 1.5 1.5L15 12" />
+  </Base>
+);
+
+export const FenceIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3 21V6l2-2 2 2v15M10 21V6l2-2 2 2v15M17 21V6l2-2 2 2v15" />
+    <path d="M2 10h20M2 16h20" />
+  </Base>
+);
+
+export const SirenIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M7 18v-5a5 5 0 0 1 10 0v5" />
+    <path d="M4 21h16M5 18h14M12 3v2M4.2 6.2l1.4 1.4M19.8 6.2l-1.4 1.4" />
+  </Base>
+);
