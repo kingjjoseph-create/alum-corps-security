@@ -17,6 +17,8 @@ export const site = {
   license: "B3600338",
   licenseLabel: "Florida License #B3600338",
   region: "Florida",
+  /** Where "Get a Quote" CTAs point. Switch to "/request-a-quote" once that page is built. */
+  quoteHref: "/#request-quote",
 } as const;
 
 export type NavItem = {
@@ -54,6 +56,48 @@ export const services = [
     points: ["Crowd management & entry screening", "VIP & backstage protection", "Private & corporate events"],
   },
 ] as const;
+
+/** Full capability list shown on the homepage. The first three have dedicated pages. */
+export const capabilities = [
+  {
+    slug: "commercial-security",
+    title: "Commercial Security",
+    href: "/commercial-security",
+    summary: "Uniformed officers and site supervision for offices, retail centers, and industrial facilities.",
+  },
+  {
+    slug: "residential-security",
+    title: "Residential Security",
+    href: "/residential-security",
+    summary: "Discreet, courteous protection for gated communities, condominiums, and private estates.",
+  },
+  {
+    slug: "event-security",
+    title: "Event Security",
+    href: "/event-security",
+    summary: "Planned coverage for galas, concerts, festivals, and corporate functions of every size.",
+  },
+  {
+    slug: "mobile-patrol",
+    title: "Mobile Patrol",
+    href: "/services",
+    summary: "Patrol officers conducting scheduled and randomized checks across one or many sites.",
+  },
+  {
+    slug: "access-control",
+    title: "Access Control",
+    href: "/services",
+    summary: "Gatehouse, lobby, and entry-point management that verifies every person and vehicle.",
+  },
+  {
+    slug: "property-protection",
+    title: "Property Protection",
+    href: "/services",
+    summary: "Deterrence and asset protection for vacant properties, construction sites, and facilities.",
+  },
+] as const;
+
+export type CapabilitySlug = (typeof capabilities)[number]["slug"];
 
 export const navigation: NavItem[] = [
   { label: "Home", href: "/" },

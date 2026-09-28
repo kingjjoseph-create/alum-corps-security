@@ -1,67 +1,82 @@
-import { BadgeIcon, ClipboardIcon, ClockIcon, RadioIcon, ShieldIcon, UsersIcon } from "@/components/Icons";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { site } from "@/lib/site";
 
-const reasons = [
+const pillars = [
   {
-    icon: ShieldIcon,
     title: "Licensed & Accountable",
     body: `A Florida-licensed security agency (#${site.license}) operating to state standards, with clear accountability at every post.`,
   },
   {
-    icon: BadgeIcon,
     title: "Professional Officers",
-    body: "Well-presented, courteous officers who represent your brand as well as they protect your property.",
+    body: "Well-presented, courteous officers who represent your organization as well as they protect it.",
   },
   {
-    icon: ClipboardIcon,
     title: "Tailored Security Plans",
-    body: "Every engagement starts with a site assessment and custom post orders — never a one-size-fits-all template.",
+    body: "Every engagement begins with an assessment and custom post orders — never a one-size-fits-all template.",
   },
   {
-    icon: RadioIcon,
-    title: "Clear Communication",
-    body: "Consistent reporting and a direct line to supervisors, so you always know what is happening on site.",
+    title: "Supervision & Reporting",
+    body: "Active supervision and consistent reporting, so you always know what is happening on site.",
   },
   {
-    icon: ClockIcon,
-    title: "Responsive Scheduling",
-    body: "Flexible coverage for ongoing contracts, short-term needs, and one-time events — scaled to fit.",
-  },
-  {
-    icon: UsersIcon,
-    title: "Leadership That Shows Up",
-    body: "Our executive team stays involved with every client relationship, from first call to final shift.",
+    title: "Executive Involvement",
+    body: "Our leadership stays engaged with every client relationship, from first consultation to final shift.",
   },
 ];
 
 export function WhyChoose() {
   return (
-    <section aria-labelledby="why-heading" className="relative overflow-hidden border-y border-gold/10 bg-coal py-24 sm:py-32">
-      <div aria-hidden="true" className="bg-grid absolute inset-0 opacity-50 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeading
-          id="why-heading"
-          align="center"
-          eyebrow="Why Choose Alum Corps"
-          title={
-            <>
-              A higher standard of <span className="text-gold-gradient italic">discipline.</span>
-            </>
-          }
-          intro="Security is only as strong as the people who deliver it. We pair trained, professional officers with the structure and oversight that keep standards high on every shift."
-        />
+    <section
+      id="why-alum-corps"
+      aria-labelledby="why-heading"
+      className="relative overflow-hidden border-y border-gold/15 bg-coal py-28 sm:py-36"
+    >
+      <div aria-hidden="true" className="bg-grid absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_top_left,black,transparent_65%)]" />
+      <div className="relative mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-12 lg:px-8">
+        <div className="lg:col-span-5">
+          <div className="lg:sticky lg:top-36">
+            <SectionHeading
+              id="why-heading"
+              eyebrow="Why Alum Corps"
+              title={
+                <>
+                  A higher standard of <span className="text-gold-gradient italic">discipline.</span>
+                </>
+              }
+              intro="Security is only as strong as the people who deliver it. We pair professional officers with the structure, supervision, and leadership that keep standards high on every shift."
+            />
+            <Reveal delay={150}>
+              <figure className="mt-12 border-l-2 border-gold pl-6">
+                <blockquote className="font-display text-2xl leading-snug text-white/90 italic">
+                  &ldquo;Our clients should never have to wonder whether their post is covered — or how well.&rdquo;
+                </blockquote>
+                <figcaption className="mt-4 text-xs font-semibold tracking-[0.3em] text-gold uppercase">
+                  The Alum Corps Standard
+                </figcaption>
+              </figure>
+            </Reveal>
+          </div>
+        </div>
 
-        <ul className="mt-16 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
-          {reasons.map(({ icon: Icon, title, body }, i) => (
-            <Reveal as="li" key={title} delay={(i % 3) * 100} className="group bg-coal p-8 transition-colors duration-500 hover:bg-graphite sm:p-10">
-              <Icon className="h-9 w-9 text-gold transition-transform duration-500 group-hover:scale-110" />
-              <h3 className="mt-6 text-lg font-semibold tracking-wide text-white">{title}</h3>
-              <p className="mt-3 leading-relaxed text-mist">{body}</p>
+        <ol className="lg:col-span-7 lg:col-start-6">
+          {pillars.map((p, i) => (
+            <Reveal
+              as="li"
+              key={p.title}
+              delay={i * 80}
+              className="group grid grid-cols-[auto_1fr] gap-x-8 border-t border-white/10 py-10 last:border-b sm:gap-x-12"
+            >
+              <span className="font-display text-5xl leading-none font-semibold text-gold/40 transition-colors duration-500 group-hover:text-gold sm:text-6xl">
+                0{i + 1}
+              </span>
+              <div>
+                <h3 className="text-xl font-semibold tracking-wide text-white">{p.title}</h3>
+                <p className="mt-3 max-w-lg leading-relaxed text-mist">{p.body}</p>
+              </div>
             </Reveal>
           ))}
-        </ul>
+        </ol>
       </div>
     </section>
   );

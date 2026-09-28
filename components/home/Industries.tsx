@@ -32,33 +32,30 @@ const industries = [
 
 export function Industries() {
   return (
-    <section aria-labelledby="industries-heading" className="py-24 sm:py-32">
-      <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-12 lg:px-8">
-        <div className="lg:col-span-4">
-          <div className="lg:sticky lg:top-32">
-            <SectionHeading
-              id="industries-heading"
-              eyebrow="Industries Served"
-              title={
-                <>
-                  Trusted across <span className="text-gold-gradient italic">Florida&rsquo;s</span> key sectors.
-                </>
-              }
-              intro="Each environment carries its own risks and expectations. Our officers are briefed on the specific protocols your industry demands."
-            />
-          </div>
-        </div>
+    <section id="industries" aria-labelledby="industries-heading" className="py-28 sm:py-36">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <SectionHeading
+          id="industries-heading"
+          align="center"
+          eyebrow="Industries We Protect"
+          title={
+            <>
+              Protecting the places <span className="text-gold-gradient italic">that matter.</span>
+            </>
+          }
+          intro="Every environment carries its own risks and expectations. Our officers are briefed on the protocols, people, and pressures specific to your sector."
+        />
 
-        <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-8 lg:gap-5">
+        <ul className="mt-16 grid grid-cols-2 gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-3 lg:grid-cols-4">
           {industries.map(({ icon: Icon, label }, i) => (
             <Reveal
               as="li"
               key={label}
-              delay={(i % 3) * 80}
-              className="group flex flex-col items-start gap-5 border border-white/10 bg-graphite/40 p-6 transition-all duration-500 hover:border-gold/40 hover:bg-graphite sm:p-7"
+              delay={(i % 4) * 70}
+              className="group flex flex-col items-center gap-5 bg-ink px-4 py-10 text-center transition-colors duration-500 hover:bg-graphite sm:py-12"
             >
-              <Icon className="h-8 w-8 text-gold/80 transition-colors duration-500 group-hover:text-gold" />
-              <span className="font-semibold leading-snug text-white">{label}</span>
+              <Icon className="h-9 w-9 text-gold/80 transition-all duration-500 group-hover:-translate-y-1 group-hover:text-gold" />
+              <span className="text-sm font-semibold tracking-[0.12em] text-white uppercase sm:text-[0.8125rem]">{label}</span>
             </Reveal>
           ))}
         </ul>

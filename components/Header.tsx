@@ -163,7 +163,7 @@ export function Header() {
           </ul>
 
           <div className="hidden lg:block">
-            <ButtonLink href="/request-a-quote" className="px-5 py-3 text-xs">
+            <ButtonLink href={site.quoteHref} className="px-5 py-3 text-xs">
               Get a Quote
             </ButtonLink>
           </div>
@@ -218,7 +218,7 @@ export function Header() {
             </li>
           ))}
           <li className="pt-8">
-            <ButtonLink href="/request-a-quote" arrow className="w-full">
+            <ButtonLink href={site.quoteHref} arrow className="w-full">
               Request Security Coverage
             </ButtonLink>
           </li>

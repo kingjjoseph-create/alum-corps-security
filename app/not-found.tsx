@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/Button";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Page Coming Soon",
@@ -22,7 +23,7 @@ export default function NotFound() {
           <ButtonLink href="/" variant="outline">
             Back to Home
           </ButtonLink>
-          <ButtonLink href="/request-a-quote" arrow>
+          <ButtonLink href={site.quoteHref} arrow>
             Request Security Coverage
           </ButtonLink>
         </div>

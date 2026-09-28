@@ -154,3 +154,58 @@
 .nav-link[aria-current="page"]::after {
   transform: scaleX(1);
 }
+
+/* ---------- Hero atmosphere ---------- */
+
+/* Film grain overlay for a photographic, premium finish. */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+}
+
+/* Slow-sweeping searchlight beams. */
+.beam {
+  position: absolute;
+  top: -10%;
+  width: 34rem;
+  height: 130%;
+  background: linear-gradient(to bottom, rgb(222 173 47 / 0.18), rgb(222 173 47 / 0.03) 55%, transparent 80%);
+  clip-path: polygon(46% 0, 54% 0, 100% 100%, 0 100%);
+  filter: blur(18px);
+  transform-origin: 50% 0;
+  animation: beam-sweep 14s ease-in-out infinite alternate;
+}
+
+@keyframes beam-sweep {
+  from {
+    transform: rotate(var(--beam-from));
+  }
+  to {
+    transform: rotate(var(--beam-to));
+  }
+}
+
+/* Perspective ground grid that recedes toward the horizon. */
+.horizon-grid {
+  background-image:
+    linear-gradient(to right, rgb(222 173 47 / 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(222 173 47 / 0.18) 1px, transparent 1px);
+  background-size: 80px 80px;
+  transform: perspective(600px) rotateX(62deg);
+  transform-origin: 50% 0;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+
+.scroll-cue {
+  animation: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}

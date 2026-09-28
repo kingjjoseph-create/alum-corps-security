@@ -1,68 +1,66 @@
 import Link from "next/link";
-import { ButtonLink } from "@/components/Button";
-import { ArrowRightIcon, BuildingIcon, CheckIcon, HomeIcon, TicketIcon } from "@/components/Icons";
+import { ArrowRightIcon, BuildingIcon, CarIcon, HomeIcon, KeyIcon, ShieldIcon, TicketIcon } from "@/components/Icons";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
-import { services } from "@/lib/site";
+import { capabilities, type CapabilitySlug } from "@/lib/site";
 
-const icons = {
+const icons: Record<CapabilitySlug, typeof ShieldIcon> = {
   "commercial-security": BuildingIcon,
   "residential-security": HomeIcon,
   "event-security": TicketIcon,
-} as const;
+  "mobile-patrol": CarIcon,
+  "access-control": KeyIcon,
+  "property-protection": ShieldIcon,
+};
 
 export function ServicesSection() {
   return (
-    <section aria-labelledby="services-heading" className="relative py-24 sm:py-32">
+    <section id="services" aria-labelledby="services-heading" className="relative py-28 sm:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeading
-            id="services-heading"
-            eyebrow="Our Services"
-            title={
-              <>
-                Security services for <span className="text-gold-gradient italic">every setting.</span>
-              </>
-            }
-            intro="Whether you manage a commercial property, a residential community, or a high-profile event, we build a coverage plan around your site, your people, and your risks."
-          />
-          <Reveal>
-            <ButtonLink href="/services" variant="outline" arrow>
-              View All Services
-            </ButtonLink>
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <SectionHeading
+              id="services-heading"
+              eyebrow="Security Services"
+              title={
+                <>
+                  Comprehensive protection, <span className="text-gold-gradient italic">one standard.</span>
+                </>
+              }
+            />
+          </div>
+          <Reveal className="lg:col-span-5">
+            <p className="text-lg leading-relaxed text-mist">
+              From a single post to multi-site programs, every assignment is planned, supervised, and delivered to the
+              same disciplined standard.
+            </p>
           </Reveal>
         </div>
 
-        <ul className="mt-16 grid gap-6 md:grid-cols-3">
-          {services.map((s, i) => {
-            const Icon = icons[s.slug];
+        <ul className="mt-16 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map((c, i) => {
+            const Icon = icons[c.slug];
             return (
-              <Reveal as="li" key={s.slug} delay={i * 120}>
+              <Reveal as="li" key={c.slug} delay={(i % 3) * 110} className="bg-ink">
                 <Link
-                  href={s.href}
-                  className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-gradient-to-b from-graphite to-coal p-8 transition-all duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_80px_-30px_rgb(222_173_47/0.35)] sm:p-10"
+                  href={c.href}
+                  className="group relative flex h-full flex-col p-8 transition-colors duration-500 hover:bg-graphite sm:p-10 lg:min-h-[21rem]"
                 >
                   <span
                     aria-hidden="true"
                     className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-gold-dark via-gold-light to-gold transition-transform duration-500 group-hover:scale-x-100"
                   />
-                  <span className="text-xs font-semibold tracking-[0.3em] text-gold/70">0{i + 1}</span>
-                  <span className="mt-6 flex h-14 w-14 items-center justify-center border border-gold/40 text-gold transition-colors duration-500 group-hover:bg-gold group-hover:text-ink">
-                    <Icon className="h-7 w-7" />
-                  </span>
-                  <h3 className="mt-8 font-display text-3xl font-semibold text-white">{s.title}</h3>
-                  <p className="mt-4 leading-relaxed text-mist">{s.summary}</p>
-                  <ul className="mt-6 space-y-2.5 text-sm text-white/80">
-                    {s.points.map((p) => (
-                      <li key={p} className="flex items-start gap-3">
-                        <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                        {p}
-                      </li>
-                    ))}
-                  </ul>
-                  <span className="mt-auto inline-flex items-center gap-2 pt-10 text-sm font-semibold tracking-[0.18em] text-gold uppercase">
+                  <div className="flex items-start justify-between">
+                    <Icon className="h-10 w-10 text-gold transition-transform duration-500 group-hover:-translate-y-1" />
+                    <span className="font-display text-lg text-white/25 transition-colors duration-500 group-hover:text-gold/70">
+                      0{i + 1}
+                    </span>
+                  </div>
+                  <h3 className="mt-10 font-display text-3xl font-semibold text-white">{c.title}</h3>
+                  <p className="mt-4 leading-relaxed text-mist">{c.summary}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-8 text-xs font-semibold tracking-[0.25em] text-gold uppercase">
                     Learn more
-                    <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                   </span>
                 </Link>
               </Reveal>

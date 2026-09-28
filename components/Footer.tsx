@@ -8,7 +8,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   const companyLinks = [
     ...navigation.filter((n) => !n.children && n.href !== "/"),
-    { label: "Request a Quote", href: "/request-a-quote" },
+    { label: "Request a Quote", href: site.quoteHref },
   ];
 
   return (
