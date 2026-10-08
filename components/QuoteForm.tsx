@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { submitQuote, type QuoteState } from "@/app/actions/quote";
-import { Field, inputClass } from "@/components/FormField";
+import { Field, inputClass, useFocusFirstError } from "@/components/FormField";
 import { ArrowRightIcon, CheckIcon } from "@/components/Icons";
 import { capabilities, site } from "@/lib/site";
 
@@ -11,6 +11,7 @@ const initial: QuoteState = { status: "idle" };
 
 export function QuoteForm({ defaultService = "" }: { defaultService?: string }) {
   const [state, action, pending] = useActionState(submitQuote, initial);
+  const formRef = useFocusFirstError(state.status, state.errors);
   const err = state.errors ?? {};
   const v = state.values ?? {};
   const aria = (key: keyof typeof err) =>
@@ -36,7 +37,7 @@ export function QuoteForm({ defaultService = "" }: { defaultService?: string }) 
   }
 
   return (
-    <form key={JSON.stringify(v)} action={action} noValidate className="grid gap-6 sm:grid-cols-2">
+    <form ref={formRef} key={JSON.stringify(v)} action={action} noValidate className="grid gap-6 sm:grid-cols-2">
       <div className="sm:col-span-2">
         <Field id="name" label="Full name" required error={err.name}>
           <input id="name" name="name" defaultValue={v.name} autoComplete="name" required className={inputClass} {...aria("name")} />

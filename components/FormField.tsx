@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 export const inputClass =
-  "mt-2 block w-full border border-white/15 bg-ink/80 px-4 py-3.5 text-white placeholder:text-white/45 transition-colors focus:border-gold focus:outline-none aria-[invalid=true]:border-red-400";
+  "mt-2 block w-full scroll-mt-36 border border-white/15 bg-ink/80 px-4 py-3.5 text-white placeholder:text-white/45 transition-colors focus:border-gold focus:outline-none aria-[invalid=true]:border-red-400";
 export const labelClass = "text-xs font-semibold tracking-[0.14em] text-white/80 uppercase sm:tracking-[0.2em]";
 
 export function RequiredMark() {
@@ -115,4 +115,17 @@ export function ChoiceGroup({
       </div>
     </fieldset>
   );
+}
+
+/**
+ * After a failed submission, move focus (and scroll) to the first invalid field
+ * so people on long forms or small screens can see what needs fixing.
+ */
+export function useFocusFirstError(status: string, errors: object | undefined) {
+  const formRef = useRef<HTMLFormElement>(null);
+  useEffect(() => {
+    if (status !== "error" || !errors || !Object.keys(errors).length) return;
+    formRef.current?.querySelector<HTMLElement>("[aria-invalid=true]")?.focus();
+  }, [status, errors]);
+  return formRef;
 }

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useActionState, useState } from "react";
 import { submitContact } from "@/app/actions/contact";
-import { Field, inputClass, invalidProps } from "@/components/FormField";
+import { Field, inputClass, invalidProps, useFocusFirstError } from "@/components/FormField";
 import { ArrowRightIcon, CheckIcon } from "@/components/Icons";
 import { contactTopics, type ContactState } from "@/lib/contact-form";
 import { site } from "@/lib/site";
@@ -12,6 +12,7 @@ const initial: ContactState = { status: "idle" };
 
 export function ContactForm() {
   const [state, action, pending] = useActionState(submitContact, initial);
+  const formRef = useFocusFirstError(state.status, state.errors);
   const err = state.errors ?? {};
   const v = state.values ?? {};
   const [topic, setTopic] = useState(v.topic ?? "");
@@ -36,7 +37,7 @@ export function ContactForm() {
   }
 
   return (
-    <form key={JSON.stringify(v)} action={action} noValidate className="grid gap-6 sm:grid-cols-2">
+    <form ref={formRef} key={JSON.stringify(v)} action={action} noValidate className="grid gap-6 sm:grid-cols-2">
       <p className="text-sm text-mist sm:col-span-2">
         Fields marked <span className="text-gold">*</span> are required.
       </p>

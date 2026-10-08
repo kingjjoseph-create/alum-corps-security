@@ -14,6 +14,8 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const servicesRef = useRef<HTMLLIElement>(null);
+  const servicesToggleRef = useRef<HTMLButtonElement>(null);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -33,10 +35,15 @@ export function Header() {
   // Escape closes any open menu; clicking outside closes the dropdown.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setMobileOpen(false);
-        setServicesOpen(false);
-      }
+      if (e.key !== "Escape") return;
+      setMobileOpen((open) => {
+        if (open) menuToggleRef.current?.focus();
+        return false;
+      });
+      setServicesOpen((open) => {
+        if (open && servicesRef.current?.contains(document.activeElement)) servicesToggleRef.current?.focus();
+        return false;
+      });
     };
     const onClick = (e: MouseEvent) => {
       if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) setServicesOpen(false);
@@ -49,8 +56,19 @@ export function Header() {
     };
   }, []);
 
+  // The mobile menu only exists below the lg breakpoint; close it if the viewport grows
+  // (e.g. a tablet rotated to landscape) so the page is never left locked.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 64rem)");
+    const onChange = () => mq.matches && setMobileOpen(false);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
+    // The open menu covers the page, so take the page behind it out of the tab order.
+    for (const el of document.querySelectorAll<HTMLElement>('#main, footer, a[href="#main"]')) el.inert = mobileOpen;
   }, [mobileOpen]);
 
   const isActive = (href: string) => {
@@ -106,8 +124,8 @@ export function Header() {
                   key={item.href}
                   ref={servicesRef}
                   className="relative"
-                  onMouseEnter={() => setServicesOpen(true)}
-                  onMouseLeave={() => setServicesOpen(false)}
+                  onPointerEnter={(e) => e.pointerType === "mouse" && setServicesOpen(true)}
+                  onPointerLeave={(e) => e.pointerType === "mouse" && setServicesOpen(false)}
                 >
                   <div className="flex items-center">
                     <Link
@@ -118,6 +136,7 @@ export function Header() {
                       {item.label}
                     </Link>
                     <button
+                      ref={servicesToggleRef}
                       type="button"
                       className="-ml-3 p-2 pr-3 text-white/70 transition-colors hover:text-gold"
                       aria-expanded={servicesOpen}
@@ -174,6 +193,7 @@ export function Header() {
           </div>
 
           <button
+            ref={menuToggleRef}
             type="button"
             className="inline-flex h-11 w-11 items-center justify-center border border-gold/40 text-gold lg:hidden"
             aria-expanded={mobileOpen}

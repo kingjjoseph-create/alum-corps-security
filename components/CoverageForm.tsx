@@ -12,6 +12,7 @@ import {
   inputClass,
   invalidProps,
   labelClass,
+  useFocusFirstError,
 } from "@/components/FormField";
 import { ArrowRightIcon, CheckIcon, ShieldIcon } from "@/components/Icons";
 import {
@@ -27,6 +28,7 @@ const initial: CoverageState = { status: "idle" };
 
 export function CoverageForm() {
   const [state, action, pending] = useActionState(submitCoverageRequest, initial);
+  const formRef = useFocusFirstError(state.status, state.errors);
   const v = state.values ?? {};
 
   // Hide a field's error as soon as the visitor edits it; reset on each new submission result.
@@ -69,7 +71,7 @@ export function CoverageForm() {
   }
 
   return (
-    <form key={JSON.stringify(v)} action={action} onInput={markEdited} onChange={markEdited} noValidate className="space-y-10">
+    <form ref={formRef} key={JSON.stringify(v)} action={action} onInput={markEdited} onChange={markEdited} noValidate className="space-y-10">
       <p className="text-sm text-mist">
         Fields marked <span className="text-gold">*</span> are required.
       </p>
