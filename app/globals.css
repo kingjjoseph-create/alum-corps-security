@@ -10,11 +10,20 @@
   --color-gold-light: #f2cc66;
   --color-gold-dark: #a87f1a;
 
+  /* Gold glow shadows — use shadow-glow / shadow-glow-lg / shadow-glow-xl / shadow-card / shadow-panel. */
+  --shadow-glow: 0 10px 40px -10px rgb(222 173 47 / 0.7);
+  --shadow-glow-lg: 0 20px 60px -20px rgb(222 173 47 / 0.7);
+  --shadow-glow-xl: 0 28px 80px -20px rgb(222 173 47 / 0.9);
+  --shadow-card: 0 30px 80px -30px rgb(222 173 47 / 0.35);
+  --shadow-panel: 0 40px 120px -50px rgb(222 173 47 / 0.35);
+
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
 
   --animate-fade-up: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-shimmer: shimmer 6s linear infinite;
+  /* Transform-only entrance for headlines: never hidden, so it doesn't delay Largest Contentful Paint. */
+  --animate-rise: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 
   @keyframes fade-up {
     from {
@@ -23,6 +32,15 @@
     }
     to {
       opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes rise {
+    from {
+      transform: translateY(18px);
+    }
+    to {
       transform: translateY(0);
     }
   }
@@ -87,8 +105,13 @@
     color: transparent;
   }
 
+  /* Small gold all-caps label used above card titles and contact blocks. */
+  .label-caps {
+    @apply text-xs font-semibold uppercase tracking-[0.3em] text-gold;
+  }
+
   .eyebrow {
-    @apply inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-gold sm:tracking-[0.3em];
+    @apply inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-gold sm:tracking-[0.3em];
   }
 
   .eyebrow::before {
@@ -178,13 +201,6 @@
 
 /* ---------- Hero atmosphere ---------- */
 
-/* Film grain overlay for a photographic, premium finish. */
-.grain {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity: 0.07;
-  mix-blend-mode: overlay;
-}
-
 /* Slow-sweeping searchlight beams. */
 .beam {
   position: absolute;
@@ -196,6 +212,7 @@
   filter: blur(18px);
   transform-origin: 50% 0;
   animation: beam-sweep 14s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 @keyframes beam-sweep {
@@ -216,19 +233,6 @@
   transform: perspective(600px) rotateX(62deg);
   transform-origin: 50% 0;
   mask-image: linear-gradient(to bottom, black, transparent 75%);
-}
-
-.scroll-cue {
-  animation: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-}
-
-@keyframes scroll-cue {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(200%);
-  }
 }
 
 /* ---------- Long-form legal copy ---------- */

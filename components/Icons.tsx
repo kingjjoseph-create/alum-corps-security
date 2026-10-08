@@ -79,12 +79,6 @@ export const RadioIcon = (p: IconProps) => (
   </Base>
 );
 
-export const ClockIcon = (p: IconProps) => (
-  <Base {...p}>
-    <circle cx="12" cy="12" r="9" />
-    <path d="M12 7v5l3 2" />
-  </Base>
-);
 
 export const UsersIcon = (p: IconProps) => (
   <Base {...p}>

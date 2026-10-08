@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRightIcon, BuildingIcon, CarIcon, CheckIcon, HomeIcon, KeyIcon, ShieldIcon, TicketIcon } from "@/components/Icons";
 import { PageHero } from "@/components/PageHero";
@@ -8,33 +9,24 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { LicenseCard, ServiceAreasCard } from "@/components/Trust";
 import { specializedServices } from "@/lib/services-detail";
 import { services, site } from "@/lib/site";
+import { HoverRule } from "@/components/Decor";
 
 const path = "/services";
 const description = `Licensed security services across ${site.serviceRegionLabel}: commercial, residential, and event security, mobile patrol, access control, and property protection.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Security Services",
-  description,
-  alternates: { canonical: path },
-  openGraph: { title: `Security Services | ${site.name}`, description, url: path },
-};
+  description: description,
+  path: path,
+});
 
 const coreIcons = { "commercial-security": BuildingIcon, "residential-security": HomeIcon, "event-security": TicketIcon } as const;
 const specializedIcons = { "mobile-patrol": CarIcon, "access-control": KeyIcon, "property-protection": ShieldIcon } as const;
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: site.url },
-    { "@type": "ListItem", position: 2, name: "Services", item: `${site.url}${path}` },
-  ],
-};
 
 export default function ServicesPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <PageHero
         eyebrow="Security Services"
@@ -72,18 +64,15 @@ export default function ServicesPage() {
                 <Reveal as="li" key={s.slug} delay={i * 120}>
                   <Link
                     href={s.href}
-                    className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-gradient-to-b from-graphite to-coal p-8 transition-all duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_80px_-30px_rgb(222_173_47/0.35)] sm:p-10"
+                    className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-gradient-to-b from-graphite to-coal p-8 transition-all duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-card sm:p-10"
                   >
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-gold-dark via-gold-light to-gold transition-transform duration-500 group-hover:scale-x-100"
-                    />
+                    <HoverRule />
                     <span className="flex h-14 w-14 items-center justify-center border border-gold/40 text-gold transition-colors duration-500 group-hover:bg-gold group-hover:text-ink">
                       <Icon className="h-7 w-7" />
                     </span>
                     <h3 className="mt-8 font-display text-3xl font-semibold text-white">{s.title}</h3>
                     <p className="mt-4 flex-1 leading-relaxed text-mist">{s.summary}</p>
-                    <ul className="mt-6 space-y-2.5 text-sm text-white/80">
+                    <ul className="mt-6 space-y-2.5 text-sm text-white/75">
                       {s.points.map((p) => (
                         <li key={p} className="flex items-start gap-3">
                           <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
@@ -132,7 +121,7 @@ export default function ServicesPage() {
                     <p className="leading-relaxed text-white/75 lg:col-span-4">{s.summary}</p>
                     <ul className="space-y-3 lg:col-span-4">
                       {s.points.map((p) => (
-                        <li key={p} className="flex items-start gap-3 text-white/90">
+                        <li key={p} className="flex items-start gap-3 text-white/85">
                           <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                           {p}
                         </li>

@@ -60,7 +60,7 @@ export function CareersForm() {
         </div>
       ) : (
         previewMode && (
-          <div role="note" className="mb-10 border border-dashed border-gold/50 bg-gold/5 p-5 text-sm text-white/80">
+          <div role="note" className="mb-10 border border-dashed border-gold/50 bg-gold/5 p-5 text-sm text-white/75">
             <span className="font-semibold text-gold">Preview mode.</span> This form is interactive for design review
             only. Nothing you enter is sent or stored. On the live site it stays locked until a secure backend is
             configured.
@@ -172,7 +172,7 @@ export function CareersForm() {
             )}
             <button
               type="submit"
-              className="group relative flex w-full items-center justify-center gap-3 overflow-hidden bg-gradient-to-r from-gold-dark via-gold to-gold-light px-4 py-6 text-[0.95rem] font-bold tracking-[0.1em] text-ink uppercase shadow-[0_20px_60px_-20px_rgb(222_173_47/0.7)] transition-all duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:hover:translate-y-0 sm:gap-4 sm:px-8 sm:text-lg sm:tracking-[0.22em]"
+              className="group relative flex w-full items-center justify-center gap-3 overflow-hidden bg-gradient-to-r from-gold-dark via-gold to-gold-light px-4 py-6 text-[0.95rem] font-bold tracking-[0.1em] text-ink uppercase shadow-glow-lg transition-all duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:hover:translate-y-0 sm:gap-4 sm:px-8 sm:text-lg sm:tracking-[0.2em]"
             >
               <span className="text-balance">{locked ? "Applications Opening Soon" : "Submit Application"}</span>
               {!locked && <ArrowRightIcon className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" />}

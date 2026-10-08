@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ContactForm } from "@/components/ContactForm";
 import { ArrowRightIcon, FaxIcon, MailIcon, PhoneIcon } from "@/components/Icons";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { LicenseCard, ServiceAreasCard } from "@/components/Trust";
 import { site } from "@/lib/site";
+import { FormPanel } from "@/components/Decor";
 
 const path = "/contact";
 const description = `Contact ${site.legalName}. Call ${site.phone}, email ${site.email}, or send a message. Serving ${site.serviceAreas.join(", ")}.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact Us",
-  description,
-  alternates: { canonical: path },
-  openGraph: { title: `Contact Us | ${site.name}`, description, url: path },
-};
+  description: description,
+  path: path,
+});
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -34,7 +36,7 @@ const channels = [
 export default function ContactPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
 
       <PageHero
         eyebrow="Contact Us"
@@ -56,7 +58,7 @@ export default function ContactPage() {
               <>
                 <Icon className="h-8 w-8 shrink-0 text-gold" />
                 <span className="min-w-0">
-                  <span className="block text-xs font-semibold tracking-[0.3em] text-gold uppercase">{label}</span>
+                  <span className="block label-caps">{label}</span>
                   <span className="mt-1 block truncate text-xl font-semibold text-white sm:text-2xl">{value}</span>
                   <span className="mt-1 block text-sm text-mist">{note}</span>
                 </span>
@@ -86,11 +88,9 @@ export default function ContactPage() {
             <h2 id="message-heading" className="mt-5 font-display text-4xl font-semibold sm:text-5xl">
               How can we <span className="text-gold-gradient italic">help?</span>
             </h2>
-            <div className="relative mt-10 border border-gold/25 bg-gradient-to-b from-graphite to-coal p-6 sm:p-10">
-              <span aria-hidden="true" className="absolute -top-px -left-px h-10 w-10 border-t-2 border-l-2 border-gold" />
-              <span aria-hidden="true" className="absolute -right-px -bottom-px h-10 w-10 border-r-2 border-b-2 border-gold" />
+            <FormPanel className="mt-10">
               <ContactForm />
-            </div>
+            </FormPanel>
           </div>
 
           <aside className="space-y-6 lg:col-span-5">
@@ -100,7 +100,7 @@ export default function ContactPage() {
                 className="group flex items-center justify-between gap-6 border border-gold/50 bg-gold/10 p-7 transition-colors hover:bg-gold/15"
               >
                 <span>
-                  <span className="block text-xs font-semibold tracking-[0.3em] text-gold uppercase">Need coverage?</span>
+                  <span className="block label-caps">Need coverage?</span>
                   <span className="mt-2 block font-display text-2xl font-semibold text-white">Request Security Coverage</span>
                   <span className="mt-1 block text-sm text-mist">Get a tailored quote for your site or event.</span>
                 </span>

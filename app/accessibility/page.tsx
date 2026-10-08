@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { LegalPage } from "@/components/LegalPage";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Accessibility Statement",
   description: `${site.legalName} is committed to making its website accessible to everyone, including people with disabilities.`,
-  alternates: { canonical: "/accessibility" },
-};
+  path: "/accessibility",
+});
 
 const toc = [
   { id: "commitment", label: "Our commitment" },

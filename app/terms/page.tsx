@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Terms of Use",
   description: `Terms governing use of the ${site.legalName} website.`,
-  alternates: { canonical: "/terms" },
-};
+  path: "/terms",
+});
 
 const toc = [
   { id: "acceptance", label: "Acceptance of terms" },

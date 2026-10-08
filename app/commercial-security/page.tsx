@@ -1,53 +1,42 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ArrowRightIcon, CheckIcon } from "@/components/Icons";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { QuoteSection } from "@/components/QuoteSection";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
-import { SectorIcon, ToolkitIcon } from "@/components/commercial/icons";
 import { commercialProcess, commercialSectors, commercialToolkit } from "@/lib/commercial";
 import { site } from "@/lib/site";
+import { CornerAccents } from "@/components/Decor";
 
 const path = "/commercial-security";
 const description =
   "Licensed commercial security in Florida for construction sites, solar sites, warehouses, offices, retail properties, apartment communities, parking areas, and industrial properties.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Commercial Security Services",
-  description,
-  alternates: { canonical: path },
-  openGraph: { title: `Commercial Security Services | ${site.name}`, description, url: path },
-};
+  description: description,
+  path: path,
+});
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Service",
-      name: "Commercial Security",
-      serviceType: "Commercial security guard services",
-      description,
-      url: `${site.url}${path}`,
-      provider: { "@id": `${site.url}/#organization` },
-      areaServed: { "@type": "State", name: site.region },
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Commercial security solutions",
-        itemListElement: commercialSectors.map((s) => ({
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: `${s.title} Security`, description: s.summary },
-        })),
-      },
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: site.url },
-        { "@type": "ListItem", position: 2, name: "Services", item: `${site.url}/services` },
-        { "@type": "ListItem", position: 3, name: "Commercial Security", item: `${site.url}${path}` },
-      ],
-    },
-  ],
+  "@type": "Service",
+  name: "Commercial Security",
+  serviceType: "Commercial security guard services",
+  description,
+  url: `${site.url}${path}`,
+  provider: { "@id": `${site.url}/#organization` },
+  areaServed: site.serviceAreas.map((name) => ({ "@type": "AdministrativeArea", name: `${name}, ${site.region}` })),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Commercial security solutions",
+    itemListElement: commercialSectors.map((s) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: `${s.title} Security`, description: s.summary },
+    })),
+  },
 };
 
 function SectorIndex() {
@@ -56,8 +45,8 @@ function SectorIndex() {
       aria-label="Properties we protect"
       className="relative border border-gold/25 bg-gradient-to-b from-graphite/90 to-coal/90 p-7 backdrop-blur-sm sm:p-8"
     >
-      <span aria-hidden="true" className="absolute -top-px -left-px h-8 w-8 border-t-2 border-l-2 border-gold" />
-      <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Properties We Protect</p>
+      <CornerAccents />
+      <p className="label-caps">Properties We Protect</p>
       <ul className="mt-5 grid grid-cols-1 gap-x-6 sm:grid-cols-2">
         {commercialSectors.map((s) => (
           <li key={s.id}>
@@ -65,7 +54,7 @@ function SectorIndex() {
               href={`#${s.id}`}
               className="group flex h-full items-center gap-3 border-b border-white/10 py-3 text-sm text-white/85 transition-colors hover:text-gold"
             >
-              <SectorIcon id={s.id} className="h-5 w-5 shrink-0 text-gold/80" />
+              <s.icon className="h-5 w-5 shrink-0 text-gold/80" />
               <span className="flex-1">{s.title}</span>
               <ArrowRightIcon className="h-3.5 w-3.5 text-gold/0 transition-all group-hover:translate-x-0.5 group-hover:text-gold" />
             </a>
@@ -79,10 +68,7 @@ function SectorIndex() {
 export default function CommercialSecurityPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
+      <JsonLd data={jsonLd} />
 
       <PageHero
         eyebrow="Commercial Security"
@@ -122,7 +108,7 @@ export default function CommercialSecurityPage() {
                   <div className="lg:col-span-4">
                     <div className="flex items-center gap-5">
                       <span className="flex h-14 w-14 shrink-0 items-center justify-center border border-gold/40 text-gold">
-                        <SectorIcon id={s.id} className="h-7 w-7" />
+                        <s.icon className="h-7 w-7" />
                       </span>
                       <span aria-hidden="true" className="font-display text-lg text-white/60">{String(i + 1).padStart(2, "0")}</span>
                     </div>
@@ -147,7 +133,7 @@ export default function CommercialSecurityPage() {
                       <h4 className="text-xs font-semibold tracking-[0.25em] text-gold uppercase">Our coverage</h4>
                       <ul className="mt-5 space-y-3.5">
                         {s.coverage.map((c) => (
-                          <li key={c} className="flex items-start gap-3 text-white/90">
+                          <li key={c} className="flex items-start gap-3 text-white/85">
                             <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                             {c}
                           </li>
@@ -180,7 +166,7 @@ export default function CommercialSecurityPage() {
           <ul className="mt-16 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
             {commercialToolkit.map((t, i) => (
               <Reveal as="li" key={t.key} delay={(i % 3) * 100} className="group bg-coal p-8 transition-colors duration-500 hover:bg-graphite sm:p-10">
-                <ToolkitIcon name={t.key} className="h-9 w-9 text-gold transition-transform duration-500 group-hover:scale-110" />
+                <t.icon className="h-9 w-9 text-gold transition-transform duration-500 group-hover:scale-110" />
                 <h3 className="mt-6 text-lg font-semibold tracking-wide text-white">{t.title}</h3>
                 <p className="mt-3 leading-relaxed text-mist">{t.body}</p>
               </Reveal>

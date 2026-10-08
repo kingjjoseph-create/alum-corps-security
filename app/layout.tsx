@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { JsonLd } from "@/components/JsonLd";
+import { RevealObserver } from "@/components/RevealObserver";
 import { logoSrc } from "@/components/Logo";
 import { services, site } from "@/lib/site";
 import "./globals.css";
@@ -10,7 +12,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  // Only semibold is used; italic is loaded so gold italic accents are true italics, not browser-slanted.
+  weight: ["600"],
+  style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
 });
@@ -39,13 +43,11 @@ export const metadata: Metadata = {
     url: "/",
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
-    images: [{ url: logoSrc, width: 1254, height: 1254, alt: `${site.name} logo` }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
-    images: [logoSrc],
   },
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
@@ -113,10 +115,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <head>
         {/* Enables scroll-reveal styles only when JS runs, so content is never hidden without it. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-        />
+        <JsonLd data={jsonLd} />
       </head>
       <body>
         <a
@@ -128,6 +127,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <RevealObserver />
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { site } from "@/lib/site";
 import { QuoteForm } from "./QuoteForm";
+import { FormPanel } from "./Decor";
 
 const steps = [
   "Tell us about your property, event, or coverage needs.",
@@ -46,7 +47,7 @@ export function QuoteSection({
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-gold/50 text-sm font-semibold text-gold">
                     {i + 1}
                   </span>
-                  <span className="pt-1.5 leading-relaxed text-white/80">{s}</span>
+                  <span className="pt-1.5 leading-relaxed text-white/75">{s}</span>
                 </li>
               ))}
             </ol>
@@ -54,7 +55,7 @@ export function QuoteSection({
 
           <Reveal delay={200}>
             <address className="mt-12 space-y-4 border-t border-white/10 pt-10 not-italic">
-              <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Speak with our team</p>
+              <p className="label-caps">Speak with our team</p>
               <a href={site.phoneHref} className="flex min-h-11 lg:min-h-0 items-center gap-4 text-xl font-semibold text-white hover:text-gold">
                 <PhoneIcon className="h-5 w-5 text-gold" />
                 {site.phone}
@@ -72,11 +73,9 @@ export function QuoteSection({
         </div>
 
         <Reveal delay={150} className="lg:col-span-7">
-          <div className="relative border border-gold/25 bg-gradient-to-b from-graphite to-coal p-7 shadow-[0_40px_120px_-50px_rgb(222_173_47/0.4)] sm:p-12">
-            <span aria-hidden="true" className="absolute -top-px -left-px h-10 w-10 border-t-2 border-l-2 border-gold" />
-            <span aria-hidden="true" className="absolute -right-px -bottom-px h-10 w-10 border-r-2 border-b-2 border-gold" />
+          <FormPanel>
             <QuoteForm defaultService={defaultService} />
-          </div>
+          </FormPanel>
         </Reveal>
       </div>
     </section>

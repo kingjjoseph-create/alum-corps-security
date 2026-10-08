@@ -1,6 +1,7 @@
 "use server";
 
 import { deliverLead } from "@/lib/deliver-lead";
+import { field, isBot, isEmail, isPhone, messages } from "@/lib/form-validation";
 
 export type QuoteState = {
   status: "idle" | "success" | "error";
@@ -9,12 +10,11 @@ export type QuoteState = {
   values?: Record<string, string>;
 };
 
-const field = (data: FormData, key: string, max = 200) => String(data.get(key) ?? "").trim().slice(0, max);
 
 /** Handles the short quote form on the homepage and service pages. Delivery: see lib/deliver-lead.ts. */
 export async function submitQuote(_prev: QuoteState, data: FormData): Promise<QuoteState> {
   // Honeypot: real visitors never fill this hidden field.
-  if (field(data, "company_website")) return { status: "success" };
+  if (isBot(data)) return { status: "success" };
 
   const quote = {
     name: field(data, "name", 120),
@@ -27,13 +27,13 @@ export async function submitQuote(_prev: QuoteState, data: FormData): Promise<Qu
   };
 
   const errors: QuoteState["errors"] = {};
-  if (!quote.name) errors.name = "Please enter your name.";
+  if (!quote.name) errors.name = messages.name;
   if (!quote.email && !quote.phone) errors.email = "Please provide an email or phone number.";
-  if (quote.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(quote.email)) errors.email = "Please enter a valid email.";
-  if (quote.phone && quote.phone.replace(/\D/g, "").length < 10) errors.phone = "Please enter a valid phone number.";
+  if (quote.email && !isEmail(quote.email)) errors.email = messages.email;
+  if (quote.phone && !isPhone(quote.phone)) errors.phone = messages.phone;
   if (!quote.service) errors.service = "Please select a service.";
   if (Object.keys(errors).length) {
-    return { status: "error", message: "Please correct the highlighted fields.", errors, values: quote };
+    return { status: "error", message: messages.summary, errors, values: quote };
   }
 
   const result = await deliverLead({

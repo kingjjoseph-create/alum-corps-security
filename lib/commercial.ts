@@ -1,8 +1,26 @@
+import {
+  ApartmentIcon,
+  BadgeIcon,
+  BuildingIcon,
+  CarIcon,
+  ClipboardIcon,
+  EyeIcon,
+  FactoryIcon,
+  HardHatIcon,
+  KeyIcon,
+  ParkingIcon,
+  RadioIcon,
+  SolarIcon,
+  StoreIcon,
+  WarehouseIcon,
+} from "@/components/Icons";
+
 /** Content for the Commercial Security page. */
 
 export const commercialSectors = [
   {
     id: "construction-sites",
+    icon: HardHatIcon,
     title: "Construction Sites",
     summary:
       "Active job sites hold high-value tools, materials, and equipment — often behind temporary fencing and left unattended overnight. We secure the site after crews leave and control who comes and goes while work is underway.",
@@ -16,6 +34,7 @@ export const commercialSectors = [
   },
   {
     id: "solar-sites",
+    icon: SolarIcon,
     title: "Solar Sites",
     summary:
       "Solar farms span wide, remote acreage with valuable panels, inverters, and copper wiring. We provide coverage through construction, commissioning, and operations — protecting assets that are difficult to watch from a single post.",
@@ -29,6 +48,7 @@ export const commercialSectors = [
   },
   {
     id: "warehouses",
+    icon: WarehouseIcon,
     title: "Warehouses & Distribution",
     summary:
       "High-volume facilities depend on secure docks, yards, and inventory. Our officers keep traffic accountable and deter internal and external theft without slowing down your operation.",
@@ -42,6 +62,7 @@ export const commercialSectors = [
   },
   {
     id: "offices",
+    icon: BuildingIcon,
     title: "Office Buildings",
     summary:
       "Tenants and visitors expect a professional, welcoming lobby — and a building that is secure. Our officers balance concierge-level courtesy with firm access control.",
@@ -55,6 +76,7 @@ export const commercialSectors = [
   },
   {
     id: "retail",
+    icon: StoreIcon,
     title: "Retail Properties",
     summary:
       "From single storefronts to shopping centers, a visible, professional presence protects merchandise, employees, and customers — and keeps the property inviting.",
@@ -68,6 +90,7 @@ export const commercialSectors = [
   },
   {
     id: "apartment-communities",
+    icon: ApartmentIcon,
     title: "Apartment Communities",
     summary:
       "Multifamily properties need security that residents appreciate and trespassers respect. We protect gates, amenities, and common areas while supporting property management.",
@@ -81,6 +104,7 @@ export const commercialSectors = [
   },
   {
     id: "parking-areas",
+    icon: ParkingIcon,
     title: "Parking Areas",
     summary:
       "Garages and surface lots are high-risk, low-visibility spaces. Regular patrols and a visible presence reduce break-ins and help people feel safe returning to their vehicles.",
@@ -94,6 +118,7 @@ export const commercialSectors = [
   },
   {
     id: "industrial",
+    icon: FactoryIcon,
     title: "Industrial Properties",
     summary:
       "Manufacturing plants, industrial yards, and utility facilities require disciplined access control and constant vigilance. We follow your site's safety rules and credentialing to the letter.",
@@ -112,31 +137,37 @@ export type CommercialSectorId = (typeof commercialSectors)[number]["id"];
 export const commercialToolkit = [
   {
     key: "officers",
+    icon: BadgeIcon,
     title: "Uniformed Security Officers",
     body: "Professional, well-presented officers at dedicated posts — stationary, roving, or concierge-style.",
   },
   {
     key: "patrol",
+    icon: CarIcon,
     title: "Mobile Patrol",
     body: "Scheduled and randomized patrol checks for sites that don't need a full-time post.",
   },
   {
     key: "access",
+    icon: KeyIcon,
     title: "Access Control & Gatehouse",
     body: "Verification of every employee, visitor, contractor, and vehicle entering your property.",
   },
   {
     key: "loss",
+    icon: EyeIcon,
     title: "Loss Prevention",
     body: "Visible deterrence and observation that reduce theft, shrink, and vandalism.",
   },
   {
     key: "reporting",
+    icon: RadioIcon,
     title: "Activity & Incident Reporting",
     body: "Clear, consistent documentation so you always know what happened on every shift.",
   },
   {
     key: "plans",
+    icon: ClipboardIcon,
     title: "Custom Post Orders",
     body: "Written procedures tailored to your site, reviewed with you before the first shift.",
   },

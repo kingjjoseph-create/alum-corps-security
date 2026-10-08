@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy",
   description: `How ${site.legalName} collects, uses, and protects information submitted through this website.`,
-  alternates: { canonical: "/privacy" },
-};
+  path: "/privacy",
+});
 
 const toc = [
   { id: "overview", label: "Overview" },

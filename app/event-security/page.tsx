@@ -1,54 +1,43 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ButtonLink } from "@/components/Button";
-import { EventServiceIcon } from "@/components/event/icons";
 import { CheckIcon } from "@/components/Icons";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { QuoteSection } from "@/components/QuoteSection";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { eventLifecycle, eventServices, eventTypes } from "@/lib/event";
 import { site } from "@/lib/site";
+import { CornerAccents, HoverRule } from "@/components/Decor";
 
 const path = "/event-security";
 const description =
   "Licensed event security in Florida: entrance and exit control, credential verification, crowd management, VIP areas, bag checks, perimeter security, parking control, emergency coordination, and incident documentation.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Event Security Services",
-  description,
-  alternates: { canonical: path },
-  openGraph: { title: `Event Security Services | ${site.name}`, description, url: path },
-};
+  description: description,
+  path: path,
+});
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Service",
-      name: "Event Security",
-      serviceType: "Event security services",
-      description,
-      url: `${site.url}${path}`,
-      provider: { "@id": `${site.url}/#organization` },
-      areaServed: { "@type": "State", name: site.region },
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Event security services",
-        itemListElement: eventServices.map((s) => ({
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: s.title, description: s.summary },
-        })),
-      },
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: site.url },
-        { "@type": "ListItem", position: 2, name: "Services", item: `${site.url}/services` },
-        { "@type": "ListItem", position: 3, name: "Event Security", item: `${site.url}${path}` },
-      ],
-    },
-  ],
+  "@type": "Service",
+  name: "Event Security",
+  serviceType: "Event security services",
+  description,
+  url: `${site.url}${path}`,
+  provider: { "@id": `${site.url}/#organization` },
+  areaServed: site.serviceAreas.map((name) => ({ "@type": "AdministrativeArea", name: `${name}, ${site.region}` })),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Event security services",
+    itemListElement: eventServices.map((s) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: s.title, description: s.summary },
+    })),
+  },
 };
 
 const quoteChecklist = [
@@ -65,9 +54,8 @@ function PlanningCard() {
       aria-labelledby="planning-heading"
       className="relative border border-gold/25 bg-gradient-to-b from-graphite/90 to-coal/90 p-5 backdrop-blur-sm sm:p-9"
     >
-      <span aria-hidden="true" className="absolute -top-px -left-px h-8 w-8 border-t-2 border-l-2 border-gold" />
-      <span aria-hidden="true" className="absolute -right-px -bottom-px h-8 w-8 border-r-2 border-b-2 border-gold" />
-      <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Planning an Event?</p>
+      <CornerAccents both />
+      <p className="label-caps">Planning an Event?</p>
       <h2 id="planning-heading" className="mt-4 font-display text-3xl font-semibold text-white">
         Get an accurate quote, fast.
       </h2>
@@ -90,10 +78,7 @@ function PlanningCard() {
 export default function EventSecurityPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
+      <JsonLd data={jsonLd} />
 
       <PageHero
         eyebrow="Event Security"
@@ -145,19 +130,16 @@ export default function EventSecurityPage() {
                 className="group relative bg-ink p-8 transition-colors duration-500 hover:bg-graphite sm:p-10"
               >
                 <span id={s.id} className="absolute -top-28" aria-hidden="true" />
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-gold-dark via-gold-light to-gold transition-transform duration-500 group-hover:scale-x-100"
-                />
+                <HoverRule />
                 <div className="flex items-start justify-between">
-                  <EventServiceIcon id={s.id} className="h-10 w-10 text-gold transition-transform duration-500 group-hover:-translate-y-1" />
+                  <s.icon className="h-10 w-10 text-gold transition-transform duration-500 group-hover:-translate-y-1" />
                   <span aria-hidden="true" className="font-display text-lg text-white/60 transition-colors duration-500 group-hover:text-gold">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
                 <h3 className="mt-8 font-display text-3xl font-semibold text-white">{s.title}</h3>
                 <p className="mt-3 leading-relaxed text-mist">{s.summary}</p>
-                <ul className="mt-6 space-y-2.5 border-t border-white/10 pt-6 text-sm text-white/80">
+                <ul className="mt-6 space-y-2.5 border-t border-white/10 pt-6 text-sm text-white/75">
                   {s.details.map((d) => (
                     <li key={d} className="flex items-start gap-3">
                       <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
@@ -197,7 +179,7 @@ export default function EventSecurityPage() {
                 <span className="relative mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-gold bg-coal font-display text-xl font-semibold text-gold">
                   {i + 1}
                 </span>
-                <p className="mt-6 text-xs font-semibold tracking-[0.35em] text-gold uppercase">{stage.phase}</p>
+                <p className="mt-6 text-xs font-semibold tracking-[0.3em] text-gold uppercase">{stage.phase}</p>
                 <h3 className="mt-3 font-display text-3xl font-semibold text-white">{stage.title}</h3>
                 <ul className="mx-auto mt-6 max-w-xs space-y-3 text-left">
                   {stage.items.map((item) => (

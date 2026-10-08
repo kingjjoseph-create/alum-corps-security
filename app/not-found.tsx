@@ -31,7 +31,7 @@ export default function NotFound() {
           </a>
           .
         </p>
-        <ul className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-semibold tracking-[0.15em] uppercase">
+        <ul className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-semibold tracking-[0.18em] uppercase">
           {helpful.map((l) => (
             <li key={l.href}>
               <Link href={l.href} className="text-white/85 transition-colors hover:text-gold">

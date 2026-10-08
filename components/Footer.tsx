@@ -26,7 +26,7 @@ export function Footer() {
 
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 sm:grid-cols-2 lg:grid-cols-12 lg:px-8 lg:py-20">
         <div className="sm:col-span-2 lg:col-span-4">
-          <Logo className="h-28" />
+          <Logo className="h-28" width={112} />
           <p className="mt-6 max-w-sm leading-relaxed text-mist">
             {site.legalName} provides licensed commercial, residential, and event security across{" "}
             {site.serviceRegionLabel}.
@@ -53,7 +53,7 @@ export function Footer() {
         </div>
 
         <nav aria-label="Services" className="lg:col-span-2">
-          <h3 className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Services</h3>
+          <h3 className="label-caps">Services</h3>
           <ul className="mt-3 text-sm lg:mt-5 lg:space-y-3">
             <li>
               <Link href="/services" className="inline-flex min-h-11 lg:min-h-0 items-center text-mist transition-colors hover:text-white">
@@ -71,7 +71,7 @@ export function Footer() {
         </nav>
 
         <nav aria-label="Company" className="lg:col-span-2">
-          <h3 className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Company</h3>
+          <h3 className="label-caps">Company</h3>
           <ul className="mt-3 text-sm lg:mt-5 lg:space-y-3">
             {companyLinks.map((l) => (
               <li key={l.href}>
@@ -84,7 +84,7 @@ export function Footer() {
         </nav>
 
         <div className="sm:col-span-2 lg:col-span-4">
-          <h3 className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Contact</h3>
+          <h3 className="label-caps">Contact</h3>
           <address className="mt-3 space-y-1 text-sm not-italic lg:mt-5 lg:space-y-4">
             <a href={site.phoneHref} className="flex min-h-11 lg:min-h-0 items-center gap-3 text-white transition-colors hover:text-gold">
               <PhoneIcon className="h-5 w-5 shrink-0 text-gold" />
@@ -113,7 +113,7 @@ export function Footer() {
             )}
           </address>
 
-          <h3 className="mt-8 text-xs font-semibold tracking-[0.3em] text-gold uppercase">Service Areas</h3>
+          <h3 className="mt-8 label-caps">Service Areas</h3>
           <p className="mt-3 text-sm leading-relaxed text-mist">
             {site.serviceAreas.join(" · ")}
             <br />

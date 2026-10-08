@@ -25,7 +25,6 @@ export function Hero() {
         </div>
         <div className="absolute inset-x-0 top-[86%] h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent shadow-[0_0_40px_6px_rgb(222_173_47/0.35)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,var(--color-ink)_95%)]" />
-        <div className="grain absolute inset-0" />
       </div>
 
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-6 py-16 text-center lg:px-8">
@@ -37,14 +36,14 @@ export function Hero() {
 
         <h1
           id="hero-heading"
-          className="mt-8 animate-fade-up font-display text-[2.75rem] leading-[1.02] font-semibold tracking-tight text-balance [animation-delay:150ms] sm:text-7xl lg:text-8xl xl:text-[6.75rem]"
+          className="mt-8 animate-rise font-display text-[2.75rem] leading-[1.02] font-semibold tracking-tight text-balance [animation-delay:150ms] sm:text-7xl lg:text-8xl xl:text-[6.75rem]"
         >
           Professional Protection.
           <br />
           <span className="text-gold-gradient animate-shimmer italic">Disciplined Service.</span>
         </h1>
 
-        <p className="mt-8 flex animate-fade-up flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs font-medium tracking-[0.04em] text-white/80 uppercase [animation-delay:300ms] sm:gap-x-5 sm:text-base sm:tracking-[0.3em]">
+        <p className="mt-8 flex animate-fade-up flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs font-medium tracking-[0.04em] text-white/75 uppercase [animation-delay:300ms] sm:gap-x-5 sm:text-base sm:tracking-[0.3em]">
           {disciplines.map((d, i) => (
             <span key={d} className="inline-flex items-center gap-2 sm:gap-5">
               {i > 0 && <span aria-hidden="true" className="h-4 w-px bg-gold/70" />}
@@ -68,7 +67,7 @@ export function Hero() {
         <dl className="mx-auto grid max-w-7xl divide-y divide-white/10 px-6 text-sm sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-8">
           <div className="py-3 sm:py-6">
             <dt className="sr-only">License</dt>
-            <dd className="flex items-center justify-center gap-3 tracking-[0.18em] text-white/80 uppercase">
+            <dd className="flex items-center justify-center gap-3 tracking-[0.18em] text-white/75 uppercase">
               <ShieldIcon className="h-5 w-5 text-gold" />
               {site.licenseLabel}
             </dd>
@@ -76,7 +75,7 @@ export function Hero() {
           <div className="py-3 sm:py-6">
             <dt className="sr-only">Phone</dt>
             <dd>
-              <a href={site.phoneHref} className="flex min-h-11 lg:min-h-0 items-center justify-center gap-3 tracking-[0.12em] text-white/80 transition-colors hover:text-gold">
+              <a href={site.phoneHref} className="flex min-h-11 lg:min-h-0 items-center justify-center gap-3 tracking-[0.12em] text-white/75 transition-colors hover:text-gold">
                 <PhoneIcon className="h-5 w-5 text-gold" />
                 {site.phone}
               </a>
@@ -85,7 +84,7 @@ export function Hero() {
           <div className="py-3 sm:py-6">
             <dt className="sr-only">Email</dt>
             <dd>
-              <a href={`mailto:${site.email}`} className="flex min-h-11 lg:min-h-0 items-center justify-center gap-3 text-white/80 transition-colors hover:text-gold">
+              <a href={`mailto:${site.email}`} className="flex min-h-11 lg:min-h-0 items-center justify-center gap-3 text-white/75 transition-colors hover:text-gold">
                 <MailIcon className="h-5 w-5 text-gold" />
                 {site.email}
               </a>

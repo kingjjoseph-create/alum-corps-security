@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ButtonLink } from "@/components/Button";
-import { Leadership } from "@/components/home/Leadership";
+import { Leadership } from "@/components/Leadership";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -10,12 +11,11 @@ import { site } from "@/lib/site";
 const path = "/about";
 const description = `${site.legalName} is a ${site.licenseClass.replace(/[“”]/g, '"')} licensed in Florida (#${site.license}), providing commercial, residential, and event security across ${site.serviceRegionLabel}.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About Us",
-  description,
-  alternates: { canonical: path },
-  openGraph: { title: `About Us | ${site.name}`, description, url: path },
-};
+  description: description,
+  path: path,
+});
 
 const values = [
   { title: "Discipline", body: "Consistent standards of conduct, appearance, and readiness on every shift." },
@@ -65,7 +65,7 @@ export default function AboutPage() {
               }
             />
           </div>
-          <Reveal className="space-y-6 text-lg leading-relaxed text-white/80 lg:col-span-7">
+          <Reveal className="space-y-6 text-lg leading-relaxed text-white/75 lg:col-span-7">
             <p>
               {site.name} provides commercial, residential, and event security for property owners, managers, and
               organizers who expect more than a uniform at the door. We believe effective security comes from the

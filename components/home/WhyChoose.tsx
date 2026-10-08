@@ -48,10 +48,10 @@ export function WhyChoose() {
             />
             <Reveal delay={150}>
               <figure className="mt-12 border-l-2 border-gold pl-6">
-                <blockquote className="font-display text-2xl leading-snug text-white/90 italic">
+                <blockquote className="font-display text-2xl leading-snug text-white/85 italic">
                   &ldquo;Our clients should never have to wonder whether their post is covered — or how well.&rdquo;
                 </blockquote>
-                <figcaption className="mt-4 text-xs font-semibold tracking-[0.3em] text-gold uppercase">
+                <figcaption className="mt-4 label-caps">
                   The Alum Corps Standard
                 </figcaption>
               </figure>

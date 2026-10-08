@@ -1,54 +1,43 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ButtonLink } from "@/components/Button";
 import { ArrowRightIcon, CheckIcon } from "@/components/Icons";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { QuoteSection } from "@/components/QuoteSection";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
-import { PropertyIcon, ResidentialServiceIcon } from "@/components/residential/icons";
 import { managementBenefits, residentialProperties, residentialServices, residentialValues } from "@/lib/residential";
 import { site } from "@/lib/site";
+import { CornerAccents, HoverRule } from "@/components/Decor";
 
 const path = "/residential-security";
 const description =
   "Licensed residential security in Florida for gated communities, HOAs, condominiums, apartment communities, private estates, 55+ communities, and seasonal homes.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Residential Security Services",
-  description,
-  alternates: { canonical: path },
-  openGraph: { title: `Residential Security Services | ${site.name}`, description, url: path },
-};
+  description: description,
+  path: path,
+});
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Service",
-      name: "Residential Security",
-      serviceType: "Residential security guard services",
-      description,
-      url: `${site.url}${path}`,
-      provider: { "@id": `${site.url}/#organization` },
-      areaServed: { "@type": "State", name: site.region },
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Residential security solutions",
-        itemListElement: residentialProperties.map((p) => ({
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: `${p.title} Security`, description: p.summary },
-        })),
-      },
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: site.url },
-        { "@type": "ListItem", position: 2, name: "Services", item: `${site.url}/services` },
-        { "@type": "ListItem", position: 3, name: "Residential Security", item: `${site.url}${path}` },
-      ],
-    },
-  ],
+  "@type": "Service",
+  name: "Residential Security",
+  serviceType: "Residential security guard services",
+  description,
+  url: `${site.url}${path}`,
+  provider: { "@id": `${site.url}/#organization` },
+  areaServed: site.serviceAreas.map((name) => ({ "@type": "AdministrativeArea", name: `${name}, ${site.region}` })),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Residential security solutions",
+    itemListElement: residentialProperties.map((p) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: `${p.title} Security`, description: p.summary },
+    })),
+  },
 };
 
 function PropertyIndex() {
@@ -57,8 +46,8 @@ function PropertyIndex() {
       aria-label="Communities we protect"
       className="relative border border-gold/25 bg-gradient-to-b from-graphite/90 to-coal/90 p-7 backdrop-blur-sm sm:p-8"
     >
-      <span aria-hidden="true" className="absolute -top-px -left-px h-8 w-8 border-t-2 border-l-2 border-gold" />
-      <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Communities We Protect</p>
+      <CornerAccents />
+      <p className="label-caps">Communities We Protect</p>
       <ul className="mt-5">
         {residentialProperties.map((p) => (
           <li key={p.id}>
@@ -66,7 +55,7 @@ function PropertyIndex() {
               href={`#${p.id}`}
               className="group flex items-center gap-4 border-b border-white/10 py-3.5 text-white/85 transition-colors hover:text-gold"
             >
-              <PropertyIcon id={p.id} className="h-5 w-5 shrink-0 text-gold/80" />
+              <p.icon className="h-5 w-5 shrink-0 text-gold/80" />
               <span className="flex-1">{p.title}</span>
               <ArrowRightIcon className="h-4 w-4 text-gold/30 transition-all group-hover:translate-x-0.5 group-hover:text-gold" />
             </a>
@@ -80,10 +69,7 @@ function PropertyIndex() {
 export default function ResidentialSecurityPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
+      <JsonLd data={jsonLd} />
 
       <PageHero
         eyebrow="Residential Security"
@@ -121,13 +107,10 @@ export default function ResidentialSecurityPage() {
             {residentialProperties.map((p, i) => (
               <Reveal as="li" key={p.id} delay={(i % 3) * 110} className="relative">
                 <span id={p.id} aria-hidden="true" className="absolute -top-28" />
-                <article className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-gradient-to-b from-graphite to-coal p-8 transition-all duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[0_30px_80px_-30px_rgb(222_173_47/0.35)] sm:p-9">
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-gold-dark via-gold-light to-gold transition-transform duration-500 group-hover:scale-x-100"
-                  />
+                <article className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-gradient-to-b from-graphite to-coal p-8 transition-all duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-card sm:p-9">
+                  <HoverRule />
                   <span className="flex h-14 w-14 items-center justify-center border border-gold/40 text-gold transition-colors duration-500 group-hover:bg-gold group-hover:text-ink">
-                    <PropertyIcon id={p.id} className="h-7 w-7" />
+                    <p.icon className="h-7 w-7" />
                   </span>
                   <h3 className="mt-8 font-display text-3xl leading-tight font-semibold text-white">{p.title}</h3>
                   <p className="mt-4 flex-1 leading-relaxed text-mist">{p.summary}</p>
@@ -197,7 +180,7 @@ export default function ResidentialSecurityPage() {
           <ul className="mt-16 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
             {residentialServices.map((s, i) => (
               <Reveal as="li" key={s.key} delay={(i % 4) * 90} className="group bg-ink p-7 transition-colors duration-500 hover:bg-graphite sm:p-8">
-                <ResidentialServiceIcon name={s.key} className="h-8 w-8 text-gold transition-transform duration-500 group-hover:-translate-y-1" />
+                <s.icon className="h-8 w-8 text-gold transition-transform duration-500 group-hover:-translate-y-1" />
                 <h3 className="mt-6 text-lg font-semibold tracking-wide text-white">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-mist">{s.body}</p>
               </Reveal>

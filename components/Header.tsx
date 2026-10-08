@@ -115,7 +115,7 @@ export function Header() {
             scrolled ? "h-20" : "h-22 lg:h-24"
           }`}
         >
-          <Logo priority className={`transition-all duration-500 ${scrolled ? "h-16" : "h-[4.5rem] lg:h-20"}`} />
+          <Logo eager className={`transition-all duration-500 ${scrolled ? "h-16" : "h-[4.5rem] lg:h-20"}`} />
 
           <ul className="hidden items-center gap-1 lg:flex">
             {navigation.map((item) =>
@@ -138,7 +138,7 @@ export function Header() {
                     <button
                       ref={servicesToggleRef}
                       type="button"
-                      className="-ml-3 p-2 pr-3 text-white/70 transition-colors hover:text-gold"
+                      className="-ml-3 p-2 pr-3 text-white/75 transition-colors hover:text-gold"
                       aria-expanded={servicesOpen}
                       aria-controls="services-menu"
                       aria-label={`${servicesOpen ? "Hide" : "Show"} ${item.label} submenu`}

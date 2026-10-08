@@ -3,6 +3,7 @@ import { ArrowRightIcon, BuildingIcon, CarIcon, HomeIcon, KeyIcon, ShieldIcon, T
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { capabilities, type CapabilitySlug } from "@/lib/site";
+import { HoverRule } from "@/components/Decor";
 
 const icons: Record<CapabilitySlug, typeof ShieldIcon> = {
   "commercial-security": BuildingIcon,
@@ -46,10 +47,7 @@ export function ServicesSection() {
                   href={c.href}
                   className="group relative flex h-full flex-col p-8 transition-colors duration-500 hover:bg-graphite sm:p-10 lg:min-h-[21rem]"
                 >
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-gold-dark via-gold-light to-gold transition-transform duration-500 group-hover:scale-x-100"
-                  />
+                  <HoverRule />
                   <div className="flex items-start justify-between">
                     <Icon className="h-10 w-10 text-gold transition-transform duration-500 group-hover:-translate-y-1" />
                     <span aria-hidden="true" className="font-display text-lg text-white/60 transition-colors duration-500 group-hover:text-gold">

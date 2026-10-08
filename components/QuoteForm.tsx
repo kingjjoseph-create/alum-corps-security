@@ -3,8 +3,14 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { submitQuote, type QuoteState } from "@/app/actions/quote";
-import { Field, inputClass, useFocusFirstError } from "@/components/FormField";
-import { ArrowRightIcon, CheckIcon } from "@/components/Icons";
+import {
+  Field,
+  FormSuccess,
+  Honeypot,
+  inputClass,
+  useFocusFirstError,
+} from "@/components/FormField";
+import { ArrowRightIcon } from "@/components/Icons";
 import { capabilities, site } from "@/lib/site";
 
 const initial: QuoteState = { status: "idle" };
@@ -19,20 +25,13 @@ export function QuoteForm({ defaultService = "" }: { defaultService?: string }) 
 
   if (state.status === "success") {
     return (
-      <div role="status" className="flex h-full flex-col items-center justify-center py-12 text-center">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full border border-gold text-gold">
-          <CheckIcon className="h-8 w-8" />
-        </span>
-        <h3 className="mt-8 font-display text-4xl font-semibold text-white">Request received.</h3>
-        <p className="mt-4 max-w-sm leading-relaxed text-mist">
-          Thank you. A member of our team will contact you shortly. For immediate needs, call{" "}
-          <a href={site.phoneHref} className="text-gold hover:text-gold-light">
-            {site.phone}
-          </a>
-          .
-        </p>
-        {state.message && <p className="mt-4 text-xs text-white/50">{state.message}</p>}
-      </div>
+      <FormSuccess title="Request received." as="h3" note={state.message}>
+        Thank you. A member of our team will contact you shortly. For immediate needs, call{" "}
+        <a href={site.phoneHref} className="text-gold hover:text-gold-light">
+          {site.phone}
+        </a>
+        .
+      </FormSuccess>
     );
   }
 
@@ -81,11 +80,7 @@ export function QuoteForm({ defaultService = "" }: { defaultService?: string }) 
         </Field>
       </div>
 
-      {/* Honeypot for bots — hidden from people and assistive tech. */}
-      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-        <label htmlFor="company_website">Leave this field empty</label>
-        <input id="company_website" name="company_website" tabIndex={-1} autoComplete="off" />
-      </div>
+      <Honeypot />
 
       <div className="flex flex-col gap-5 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <p role="status" aria-live="polite" className={`text-sm ${state.status === "error" ? "text-red-300" : "text-mist"}`}>
@@ -104,7 +99,7 @@ export function QuoteForm({ defaultService = "" }: { defaultService?: string }) 
         <button
           type="submit"
           disabled={pending}
-          className="group inline-flex shrink-0 items-center justify-center gap-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light px-8 py-4 text-sm font-semibold tracking-[0.18em] text-ink uppercase transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_40px_-10px_rgb(222_173_47/0.7)] disabled:cursor-wait disabled:opacity-70"
+          className="group inline-flex shrink-0 items-center justify-center gap-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light px-8 py-4 text-sm font-semibold tracking-[0.18em] text-ink uppercase transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow disabled:cursor-wait disabled:opacity-70"
         >
           {pending ? "Sending…" : "Submit Request"}
           {!pending && <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />}

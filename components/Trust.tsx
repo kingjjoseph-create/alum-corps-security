@@ -1,13 +1,14 @@
 import { ShieldIcon, TargetIcon } from "./Icons";
 import { site } from "@/lib/site";
+import { CornerAccents } from "./Decor";
 
 /** Full license disclosure with a link to the state regulator. */
 export function LicenseCard({ className = "" }: { className?: string }) {
   return (
     <div className={`relative border border-gold/30 bg-gradient-to-b from-graphite to-coal p-7 sm:p-8 ${className}`}>
-      <span aria-hidden="true" className="absolute -top-px -left-px h-8 w-8 border-t-2 border-l-2 border-gold" />
+      <CornerAccents />
       <ShieldIcon className="h-9 w-9 text-gold" />
-      <p className="mt-5 text-xs font-semibold tracking-[0.3em] text-gold uppercase">Licensed Security Agency</p>
+      <p className="mt-5 label-caps">Licensed Security Agency</p>
       <p className="mt-3 text-2xl font-semibold tracking-wide text-white tabular-nums">{site.licenseLabel}</p>
       <p className="mt-3 leading-relaxed text-mist">
         {site.legalName} holds a {site.licenseClass} license issued by the {site.licenseIssuer}.
@@ -29,7 +30,7 @@ export function ServiceAreasCard({ className = "" }: { className?: string }) {
   return (
     <div className={`relative border border-white/10 bg-gradient-to-b from-graphite to-coal p-7 sm:p-8 ${className}`}>
       <TargetIcon className="h-9 w-9 text-gold" />
-      <p className="mt-5 text-xs font-semibold tracking-[0.3em] text-gold uppercase">Service Areas</p>
+      <p className="mt-5 label-caps">Service Areas</p>
       <p className="mt-3 font-display text-3xl font-semibold text-white">{site.serviceRegionLabel}</p>
       <ul className="mt-4 space-y-2">
         {site.serviceAreas.map((a) => (

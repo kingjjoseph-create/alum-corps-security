@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { CareersForm } from "@/components/CareersForm";
 import { CheckIcon, PhoneIcon } from "@/components/Icons";
 import { PageHero } from "@/components/PageHero";
@@ -6,17 +7,17 @@ import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { hiringSteps, positions, reasonsToJoin, requirements } from "@/lib/careers";
 import { site } from "@/lib/site";
+import { CornerAccents, FormPanel } from "@/components/Decor";
 
 const path = "/careers";
 const description =
   "Join Alum Corps Security. We hire licensed, professional security officers in Florida for commercial, residential, and event assignments.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Careers",
-  description,
-  alternates: { canonical: path },
-  openGraph: { title: `Careers | ${site.name}`, description, url: path },
-};
+  description: description,
+  path: path,
+});
 
 function PositionsCard() {
   return (
@@ -24,8 +25,8 @@ function PositionsCard() {
       aria-labelledby="positions-heading"
       className="relative border border-gold/25 bg-gradient-to-b from-graphite/90 to-coal/90 p-7 backdrop-blur-sm sm:p-8"
     >
-      <span aria-hidden="true" className="absolute -top-px -left-px h-8 w-8 border-t-2 border-l-2 border-gold" />
-      <h2 id="positions-heading" className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">
+      <CornerAccents />
+      <h2 id="positions-heading" className="label-caps">
         Positions We Hire For
       </h2>
       <ul className="mt-5">
@@ -156,7 +157,7 @@ export default function CareersPage() {
               />
               <Reveal delay={150}>
                 <div className="mt-10 border-t border-white/10 pt-8">
-                  <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Questions about working with us?</p>
+                  <p className="label-caps">Questions about working with us?</p>
                   <a href={site.phoneHref} className="mt-4 flex min-h-11 lg:min-h-0 items-center gap-4 text-xl font-semibold text-white hover:text-gold">
                     <PhoneIcon className="h-5 w-5 text-gold" />
                     {site.phone}
@@ -167,11 +168,9 @@ export default function CareersPage() {
           </div>
 
           <div className="lg:col-span-8">
-            <div className="relative border border-gold/25 bg-gradient-to-b from-graphite to-coal p-6 shadow-[0_40px_120px_-50px_rgb(222_173_47/0.35)] sm:p-10 lg:p-12">
-              <span aria-hidden="true" className="absolute -top-px -left-px h-10 w-10 border-t-2 border-l-2 border-gold" />
-              <span aria-hidden="true" className="absolute -right-px -bottom-px h-10 w-10 border-r-2 border-b-2 border-gold" />
+            <FormPanel>
               <CareersForm />
-            </div>
+            </FormPanel>
           </div>
         </div>
       </section>

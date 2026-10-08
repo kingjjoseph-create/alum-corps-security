@@ -8,13 +8,15 @@ import {
   Field,
   FieldError,
   FormSection as Section,
-  RequiredMark,
+  FormSuccess,
+  Honeypot,
   inputClass,
   invalidProps,
   labelClass,
+  RequiredMark,
   useFocusFirstError,
 } from "@/components/FormField";
-import { ArrowRightIcon, CheckIcon, ShieldIcon } from "@/components/Icons";
+import { ArrowRightIcon, ShieldIcon } from "@/components/Icons";
 import {
   armedOptions,
   frequencyOptions,
@@ -52,21 +54,14 @@ export function CoverageForm() {
 
   if (state.status === "success") {
     return (
-      <div role="status" className="flex flex-col items-center py-16 text-center">
-        <span className="flex h-20 w-20 items-center justify-center rounded-full border border-gold text-gold">
-          <CheckIcon className="h-10 w-10" />
-        </span>
-        <h2 className="mt-8 font-display text-4xl font-semibold text-white sm:text-5xl">Request received.</h2>
-        <p className="mt-5 max-w-md text-lg leading-relaxed text-mist">
-          Thank you. A member of the {site.name} team will review your request and contact you shortly. For
-          immediate needs, call{" "}
-          <a href={site.phoneHref} className="text-gold hover:text-gold-light">
-            {site.phone}
-          </a>
-          .
-        </p>
-        {state.message && <p className="mt-4 text-xs text-white/50">{state.message}</p>}
-      </div>
+      <FormSuccess title="Request received." large note={state.message}>
+        Thank you. A member of the {site.name} team will review your request and contact you shortly. For
+        immediate needs, call{" "}
+        <a href={site.phoneHref} className="text-gold hover:text-gold-light">
+          {site.phone}
+        </a>
+        .
+      </FormSuccess>
     );
   }
 
@@ -208,11 +203,7 @@ export function CoverageForm() {
         </div>
       </Section>
 
-      {/* Honeypot for bots — hidden from people and assistive tech. */}
-      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-        <label htmlFor="company_website">Leave this field empty</label>
-        <input id="company_website" name="company_website" tabIndex={-1} autoComplete="off" />
-      </div>
+      <Honeypot />
 
       <div className="border-t border-white/10 pt-10">
         {state.status === "error" && (
@@ -223,7 +214,7 @@ export function CoverageForm() {
         <button
           type="submit"
           disabled={pending}
-          className="group relative flex w-full items-center justify-center gap-3 overflow-hidden bg-gradient-to-r from-gold-dark via-gold to-gold-light px-4 py-6 text-[0.95rem] font-bold tracking-[0.1em] text-ink uppercase sm:gap-4 sm:px-8 sm:tracking-[0.22em] shadow-[0_20px_60px_-20px_rgb(222_173_47/0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_80px_-20px_rgb(222_173_47/0.9)] disabled:cursor-wait disabled:opacity-70 sm:text-lg"
+          className="group relative flex w-full items-center justify-center gap-3 overflow-hidden bg-gradient-to-r from-gold-dark via-gold to-gold-light px-4 py-6 text-[0.95rem] font-bold tracking-[0.1em] text-ink uppercase sm:gap-4 sm:px-8 sm:tracking-[0.2em] shadow-glow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow-xl disabled:cursor-wait disabled:opacity-70 sm:text-lg"
         >
           <span
             aria-hidden="true"

@@ -9,13 +9,12 @@ import {
   type CoverageState,
 } from "@/lib/coverage-form";
 import { deliverLead } from "@/lib/deliver-lead";
+import { field, isBot, isEmail, isPhone, messages, oneOf } from "@/lib/form-validation";
 
-const field = (data: FormData, key: string, max = 200) => String(data.get(key) ?? "").trim().slice(0, max);
-const oneOf = (value: string, options: readonly string[]) => (options.includes(value) ? value : "");
 
 /** Handles the full Request Security Coverage form. Delivery: see lib/deliver-lead.ts. */
 export async function submitCoverageRequest(_prev: CoverageState, data: FormData): Promise<CoverageState> {
-  if (field(data, "company_website")) return { status: "success" }; // honeypot
+  if (isBot(data)) return { status: "success" };
 
   const v: Record<CoverageField, string> = {
     name: field(data, "name", 120),
@@ -35,9 +34,9 @@ export async function submitCoverageRequest(_prev: CoverageState, data: FormData
   };
 
   const errors: CoverageState["errors"] = {};
-  if (!v.name) errors.name = "Please enter your name.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) errors.email = "Please enter a valid email address.";
-  if (v.phone.replace(/\D/g, "").length < 10) errors.phone = "Please enter a valid phone number.";
+  if (!v.name) errors.name = messages.name;
+  if (!isEmail(v.email)) errors.email = messages.email;
+  if (!isPhone(v.phone)) errors.phone = messages.phone;
   if (!v.location) errors.location = "Please enter the service location.";
   if (!v.securityType) errors.securityType = "Please select a security type.";
   if (v.guards && !(Number.isInteger(Number(v.guards)) && Number(v.guards) >= 1))
@@ -48,7 +47,7 @@ export async function submitCoverageRequest(_prev: CoverageState, data: FormData
   if (!v.description) errors.description = "Please describe your security needs.";
 
   if (Object.keys(errors).length) {
-    return { status: "error", message: "Please correct the highlighted fields.", errors, values: v };
+    return { status: "error", message: messages.summary, errors, values: v };
   }
 
   const result = await deliverLead({

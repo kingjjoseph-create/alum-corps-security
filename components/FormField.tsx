@@ -1,8 +1,9 @@
 import { useEffect, useRef, type ReactNode } from "react";
+import { CheckIcon } from "./Icons";
 
 export const inputClass =
-  "mt-2 block w-full scroll-mt-36 border border-white/15 bg-ink/80 px-4 py-3.5 text-white placeholder:text-white/45 transition-colors focus:border-gold focus:outline-none aria-[invalid=true]:border-red-400";
-export const labelClass = "text-xs font-semibold tracking-[0.14em] text-white/80 uppercase sm:tracking-[0.2em]";
+  "mt-2 block w-full scroll-mt-36 border border-white/15 bg-ink/80 px-4 py-3.5 text-white placeholder:text-white/50 transition-colors focus:border-gold focus:outline-none aria-[invalid=true]:border-red-400";
+export const labelClass = "text-xs font-semibold tracking-[0.14em] text-white/75 uppercase sm:tracking-[0.2em]";
 
 export function RequiredMark() {
   return (
@@ -128,4 +129,44 @@ export function useFocusFirstError(status: string, errors: object | undefined) {
     formRef.current?.querySelector<HTMLElement>("[aria-invalid=true]")?.focus();
   }, [status, errors]);
   return formRef;
+}
+
+/** Hidden anti-spam field. Real visitors never see or fill it; the server ignores submissions that do. */
+export function Honeypot({ id = "company_website" }: { id?: string }) {
+  return (
+    <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+      <label htmlFor={id}>Leave this field empty</label>
+      <input id={id} name="company_website" tabIndex={-1} autoComplete="off" />
+    </div>
+  );
+}
+
+/** Confirmation shown in place of a form after a successful submission. */
+export function FormSuccess({
+  title,
+  children,
+  note,
+  as: Heading = "h2",
+  large = false,
+}: {
+  title: string;
+  children: ReactNode;
+  note?: string;
+  as?: "h2" | "h3";
+  large?: boolean;
+}) {
+  return (
+    <div role="status" className={`flex h-full flex-col items-center justify-center text-center ${large ? "py-16" : "py-12"}`}>
+      <span
+        className={`flex items-center justify-center rounded-full border border-gold text-gold ${large ? "h-20 w-20" : "h-16 w-16"}`}
+      >
+        <CheckIcon className={large ? "h-10 w-10" : "h-8 w-8"} />
+      </span>
+      <Heading className={`mt-8 font-display font-semibold text-white ${large ? "text-4xl sm:text-5xl" : "text-4xl"}`}>
+        {title}
+      </Heading>
+      <p className={`mt-4 leading-relaxed text-mist ${large ? "max-w-md text-lg" : "max-w-sm"}`}>{children}</p>
+      {note && <p className="mt-4 text-xs text-white/50">{note}</p>}
+    </div>
+  );
 }

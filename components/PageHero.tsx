@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { breadcrumbJsonLd } from "@/lib/seo";
 import { ButtonLink } from "./Button";
+import { JsonLd } from "./JsonLd";
 
 type Crumb = { label: string; href?: string };
 
@@ -31,11 +33,11 @@ export function PageHero({
       aria-labelledby="page-heading"
       className="relative isolate overflow-hidden border-b border-gold/15 pt-36 pb-20 lg:pt-48 lg:pb-28"
     >
+      <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_70%_at_15%_0%,rgb(222_173_47/0.14),transparent_70%)]" />
         <div className="bg-grid absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_top_left,black,transparent_70%)]" />
         <div className="absolute -right-40 bottom-0 h-[30rem] w-[30rem] rounded-full bg-gold/10 blur-[140px]" />
-        <div className="grain absolute inset-0" />
       </div>
 
       <div className="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-12 lg:items-end lg:px-8">
@@ -54,7 +56,7 @@ export function PageHero({
                       {c.label}
                     </Link>
                   ) : (
-                    <span aria-current="page" className="text-white/80">
+                    <span aria-current="page" className="text-white/75">
                       {c.label}
                     </span>
                   )}
@@ -66,7 +68,7 @@ export function PageHero({
           <p className="eyebrow mt-10 animate-fade-up [animation-delay:100ms]">{eyebrow}</p>
           <h1
             id="page-heading"
-            className="mt-6 animate-fade-up font-display text-5xl leading-[1.02] font-semibold tracking-tight text-balance [animation-delay:200ms] sm:text-6xl lg:text-7xl"
+            className="mt-6 animate-rise font-display text-5xl leading-[1.02] font-semibold tracking-tight text-balance [animation-delay:200ms] sm:text-6xl lg:text-7xl"
           >
             {title}
           </h1>

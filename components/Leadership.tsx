@@ -1,6 +1,7 @@
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { leadership } from "@/lib/site";
+import { HoverRule } from "@/components/Decor";
 
 export function Leadership() {
   return (
@@ -35,10 +36,7 @@ export function Leadership() {
             <Reveal as="li" key={person.name} delay={i * 120}>
               {/* Executive card. When headshots are available, swap the monogram for an <Image>. */}
               <article className="group relative flex h-full flex-col overflow-hidden border border-white/10 bg-gradient-to-b from-graphite to-ink p-8 transition-colors duration-500 hover:border-gold/40 sm:p-9">
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-gold-dark via-gold-light to-gold transition-transform duration-500 group-hover:scale-x-100"
-                />
+                <HoverRule />
                 <div className="flex items-center justify-between">
                   <span
                     aria-hidden="true"
@@ -51,7 +49,7 @@ export function Leadership() {
                   </span>
                 </div>
                 <h3 className="mt-8 font-display text-3xl font-semibold text-white">{person.name}</h3>
-                <p className="mt-1 text-xs font-semibold tracking-[0.28em] text-mist uppercase">{person.role}</p>
+                <p className="mt-1 text-xs font-semibold tracking-[0.25em] text-mist uppercase">{person.role}</p>
                 <span aria-hidden="true" className="mt-6 h-px w-10 bg-gold transition-all duration-500 group-hover:w-16" />
                 <p className="mt-6 leading-relaxed text-white/75">{person.focus}</p>
               </article>

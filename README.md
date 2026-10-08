@@ -22,22 +22,34 @@ npm start            # serves the optimized build on http://localhost:3000
 
 ```
 app/
-  layout.tsx         Root layout: fonts, SEO metadata, JSON-LD, header/footer
-  page.tsx           Homepage (composes the sections below)
-  globals.css        Tailwind theme (black/gold palette, fonts, animations)
-  not-found.tsx      Branded 404 / "coming soon" page
-  robots.ts, sitemap.ts, icon.png, apple-icon.png
+  layout.tsx            Root layout: fonts, site-wide metadata, organization JSON-LD, header/footer
+  page.tsx              Homepage; one folder per page (services/, about/, contact/, careers/, …)
+  globals.css           Design tokens (colors, gold shadows), shared utilities (.label-caps, .eyebrow), animations
+  opengraph-image.tsx   Generated 1200×630 social share image used by every page
+  not-found.tsx, robots.ts, sitemap.ts, icon.png, apple-icon.png
+  actions/              Server actions: quote.ts, coverage.ts, contact.ts
 components/
-  Header.tsx         Sticky nav, services dropdown, accessible mobile menu
-  Footer.tsx         Contact info, license number, site links
-  Logo.tsx, Button.tsx, Reveal.tsx (scroll animations), SectionHeading.tsx, Icons.tsx
-  home/              Hero, ServicesSection, WhyChoose, Industries, Leadership,
-                     QuoteSection + QuoteForm
-app/actions/         Server actions: quote.ts (short form), coverage.ts (full form)
-lib/deliver-lead.ts  The one place form submissions are sent (email today; swap for CRM)
-lib/site.ts          Company details, navigation, services, leadership — edit here
+  Header.tsx, Footer.tsx, Logo.tsx, Button.tsx, Icons.tsx
+  PageHero.tsx          Interior-page hero (also emits breadcrumb structured data)
+  SectionHeading.tsx, Reveal.tsx + RevealObserver.tsx (one shared scroll-animation observer)
+  Decor.tsx             CornerAccents, HoverRule, FormPanel
+  FormField.tsx         Form fields, choice buttons, Honeypot, FormSuccess, focus-first-error hook
+  QuoteForm, CoverageForm, ContactForm, CareersForm, QuoteSection, Leadership, Trust, LegalPage, JsonLd
+  home/                 Homepage-only sections (Hero, ServicesSection, WhyChoose, Industries)
+lib/
+  site.ts               Company details, navigation, services, leadership — edit here
+  commercial.ts, residential.ts, event.ts, services-detail.ts, careers.ts   Page content (with icons)
+  seo.ts                pageMetadata() and breadcrumb helpers — use for every new page
+  form-validation.ts    Shared server-side validation
+  deliver-lead.ts       The one place form submissions are sent (email today; swap for CRM)
 public/images/alum-corps-logo.jpg  Official Alum Corps logo (use as-is; do not alter)
 ```
+
+### Conventions
+
+- New pages: `export const metadata = pageMetadata({ title, description, path })`, and use `PageHero` (breadcrumb structured data comes with it). Add the route to `app/sitemap.ts`.
+- Colors, shadows, and type come from the tokens in `app/globals.css` — avoid raw hex/rgb values in class names.
+- Structured data goes through `<JsonLd data={…} />` (it escapes content safely).
 
 ## Customizing
 
