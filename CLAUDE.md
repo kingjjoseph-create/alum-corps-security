@@ -41,7 +41,7 @@ There is no test suite. Before committing, run `npm run lint`, `npx tsc --noEmit
 
 - **Names:** "Alum Corps Security" (brand) and "Alum Corps Security LLC" (legal; use in the footer copyright, legal pages and "about" statements).
 - **License:** display as "Florida License #B3600338". Full form: Class "B" Security Agency, licensed by the Florida Department of Agriculture and Consumer Services, Division of Licensing. It must stay visible in the header utility bar, the mobile menu and every footer, and use `LicenseCard` from `components/Trust.tsx` where a full disclosure fits. Render the number in the sans font; the display serif's figures are hard to read.
-- **Contact:** phone displays as `(561) 933-4479`, fax as `(954) 915-4229`, email `Security@alumcorp.com`, all via `site.*`.
+- **Contact:** phone displays as `(561) 933-4479`, fax as `(954) 915-4229`, email `Security@alumcorpco.com`, all via `site.*`.
 - **Service area:** South Florida (Palm Beach, Broward and Miami-Dade counties), plus "Additional Florida locations available on request."
 - **Leadership:** Jasnel Sertilus (CEO), Rudjeri Joseph (COO), Junior Dumezil (CTO).
 - **Voice:** upscale, disciplined, national-caliber; confident but not militaristic.

@@ -66,8 +66,8 @@ Both forms — the short quote form (homepage and service pages) and the full **
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `RESEND_API_KEY` | yes | API key from Resend |
-| `QUOTE_TO_EMAIL` | no | Recipient (defaults to Security@alumcorp.com) |
-| `QUOTE_FROM_EMAIL` | no | Sender, e.g. `Alum Corps Website <quotes@alumcorp.com>` (requires a verified domain in Resend) |
+| `QUOTE_TO_EMAIL` | no | Recipient (defaults to Security@alumcorpco.com) |
+| `QUOTE_FROM_EMAIL` | no | Sender, e.g. `Alum Corps Website <quotes@alumcorpco.com>` (requires a verified domain in Resend) |
 
 Without a key, requests are printed to the terminal during `npm run dev`, and in production visitors are shown the phone number and email instead — requests are never silently lost.
 

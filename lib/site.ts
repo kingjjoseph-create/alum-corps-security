@@ -10,7 +10,7 @@ export const site = {
   description:
     "Alum Corps Security LLC is a licensed Florida security agency providing disciplined, professional commercial, residential, and event security services.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.alumcorp.com",
-  email: "Security@alumcorp.com",
+  email: "Security@alumcorpco.com",
   /** Display format; standard (xxx) xxx-xxxx reads as an established business line. */
   phone: "(561) 933-4479",
   phoneHref: "tel:+15619334479",
